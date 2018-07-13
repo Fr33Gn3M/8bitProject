@@ -8,4 +8,7 @@ echo "<br />";
 $x="Hello";
 $x = $x . " world!";
 echo $x; // outputs Hello world! 
+
+$y = 234;
+echo $y;
 ?>
