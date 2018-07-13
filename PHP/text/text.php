@@ -1,6 +1,6 @@
 <?php
 $a = "Hello";
-$b = $a + " world!";
+$b = $a . " world!";
 echo $b; // outputs Hello world! 
 
 echo "<br />";
