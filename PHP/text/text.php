@@ -7,4 +7,6 @@ echo "<br />";
 
 $y = 234;
 echo $y;
+
+echo $y;
 ?>
