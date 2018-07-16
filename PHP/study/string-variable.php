@@ -6,6 +6,7 @@
     #strlen获取长度
     echo strlen($text1);
     echo '<br />';
+    
 
 
     echo $text1;
