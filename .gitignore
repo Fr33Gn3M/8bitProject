@@ -13,6 +13,18 @@ ASP.NET/WebAPI/Computing/obj
 ASP.NET/WebAPI/DAL/bin
 ASP.NET/WebAPI/DAL/obj
 ASP.NET/WebAPI/.vs
+ASP.NET/WebAPIWithGIS/packages
+ASP.NET/WebAPIWithGIS/Model/bin
+ASP.NET/WebAPIWithGIS/Model/obj
+ASP.NET/WebAPIWithGIS/ArcGIsLib/bin
+ASP.NET/WebAPIWithGIS/ArcGIsLib/obj
+ASP.NET/WebAPIWithGIS/Common/bin
+ASP.NET/WebAPIWithGIS/Common/obj
+ASP.NET/WebAPIWithGIS/Computing/bin
+ASP.NET/WebAPIWithGIS/Computing/obj
+ASP.NET/WebAPIWithGIS/DAL/bin
+ASP.NET/WebAPIWithGIS/DAL/obj
+ASP.NET/WebAPIWithGIS/.vs
 ##############################
 ## Files                    ##
 ##############################
