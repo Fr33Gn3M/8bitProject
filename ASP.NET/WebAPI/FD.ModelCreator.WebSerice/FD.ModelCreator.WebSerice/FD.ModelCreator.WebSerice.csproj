@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\Utility.cs" />
+    <Compile Include="Controllers\BussinessServiceController.cs" />
     <Compile Include="Controllers\DataServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
