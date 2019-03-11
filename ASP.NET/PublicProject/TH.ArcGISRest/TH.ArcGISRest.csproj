@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{57C16EF6-F243-4C9E-927C-EA7025912CAA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TH.ArcGISRest</RootNamespace>
+    <AssemblyName>TH.ArcGISRest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\BDCSJH\TH.BDCSJH.MvcService\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\BDCSJH\TH.BDCSJH.MvcService\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\BDCSJH\TH.BDCSJH.MvcService\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PGK.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f93e897f802ddcb7, processorArchitecture=MSIL">
+      <HintPath>..\..\BDCSJH\TH.BDCSJH.MvcService\packages\PGK.Extensions.2011.6\lib\PGK.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiImports\Catelog\AuthInfo.cs" />
+    <Compile Include="ApiImports\Catelog\CatelogFolderItem.cs" />
+    <Compile Include="ApiImports\Catelog\NameTypePair.cs" />
+    <Compile Include="ApiImports\Catelog\ServerInfo.cs" />
+    <Compile Include="ApiImports\Drawing\Color.cs" />
+    <Compile Include="ApiImports\Drawing\DrawingInfo.cs" />
+    <Compile Include="ApiImports\Drawing\IBase64Image.cs" />
+    <Compile Include="ApiImports\Drawing\Label\LabelClass.cs" />
+    <Compile Include="ApiImports\Drawing\Render\ClassBreakInfo.cs" />
+    <Compile Include="ApiImports\Drawing\Render\ClassBreaksRenderer.cs" />
+    <Compile Include="ApiImports\Drawing\Render\RendererBase.cs" />
+    <Compile Include="ApiImports\Drawing\Render\SimpleRenderer.cs" />
+    <Compile Include="ApiImports\Drawing\Render\UniqueValueInfo.cs" />
+    <Compile Include="ApiImports\Drawing\Render\UniqueValueRenderer.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\Font.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\ISymbol.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\PictureFillSymbol.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\PictureMarkerSymbol.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\SimpleFillSymbol.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\SimpleLineSymbol.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\SimpleMarkerSymbol.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\TextSymbol.cs" />
+    <Compile Include="ApiImports\Drawing\Symbol\WithTypeSymbolBase.cs" />
+    <Compile Include="ApiImports\Error.cs" />
+    <Compile Include="ApiImports\FeatureServer\AddResults.cs" />
+    <Compile Include="ApiImports\FeatureServer\AgsApplyEditsParams.cs" />
+    <Compile Include="ApiImports\FeatureServer\AgsDeleteFeaturesParams.cs" />
+    <Compile Include="ApiImports\FeatureServer\AgsQueryFeatureLayerParams.cs" />
+    <Compile Include="ApiImports\FeatureServer\DeleteResultsBase.cs" />
+    <Compile Include="ApiImports\FeatureServer\DeleteResultsOnlyIdsNospecified.cs" />
+    <Compile Include="ApiImports\FeatureServer\DeleteResultsOnlyIdsSpecified.cs" />
+    <Compile Include="ApiImports\FeatureServer\EditResult.cs" />
+    <Compile Include="ApiImports\FeatureServer\EditResults.cs" />
+    <Compile Include="ApiImports\FeatureServer\FeatureResponse.cs" />
+    <Compile Include="ApiImports\FeatureServer\FeatureServiceInfo.cs" />
+    <Compile Include="ApiImports\FeatureServer\FeatureServiceLayerInfo.cs" />
+    <Compile Include="ApiImports\FeatureServer\UpdateResults.cs" />
+    <Compile Include="ApiImports\GeometryService\AreasAndLengthsResponse.cs" />
+    <Compile Include="ApiImports\GeometryService\AreaUnit.cs" />
+    <Compile Include="ApiImports\GeometryService\ConvexHullResponse.cs" />
+    <Compile Include="ApiImports\GeometryService\CutResponse.cs" />
+    <Compile Include="ApiImports\GeometryService\DistanceResponse.cs" />
+    <Compile Include="ApiImports\GeometryService\EsriAreaUnit.cs" />
+    <Compile Include="ApiImports\GeometryService\GeometryRelation.cs" />
+    <Compile Include="ApiImports\GeometryService\GeometryServiceInfo.cs" />
+    <Compile Include="ApiImports\GeometryService\LabelPointsResponse.cs" />
+    <Compile Include="ApiImports\GeometryService\LengthsResponse.cs" />
+    <Compile Include="ApiImports\GeometryService\RelationsResponse.cs" />
+    <Compile Include="ApiImports\GeometryService\Url.cs" />
+    <Compile Include="ApiImports\Geometry\AgsEnvelope.cs" />
+    <Compile Include="ApiImports\Geometry\AgsGeometryBase.cs" />
+    <Compile Include="ApiImports\Geometry\AgsGeometryCollection.cs" />
+    <Compile Include="ApiImports\Geometry\AgsGeometryObject.cs" />
+    <Compile Include="ApiImports\Geometry\AgsMultipoint.cs" />
+    <Compile Include="ApiImports\Geometry\AgsPoint.cs" />
+    <Compile Include="ApiImports\Geometry\AgsPolygon.cs" />
+    <Compile Include="ApiImports\Geometry\AgsPolyline.cs" />
+    <Compile Include="ApiImports\Geometry\AgsSpatialReference.cs" />
+    <Compile Include="ApiImports\Geometry\AgsTypedGeometry.cs" />
+    <Compile Include="ApiImports\IdNamePair.cs" />
+    <Compile Include="ApiImports\IStringDictionary.cs" />
+    <Compile Include="ApiImports\JsonConverters\CollectionConverterBase.cs" />
+    <Compile Include="ApiImports\JsonConverters\ColorConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\DocumentInfoConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\DomainCollectionConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\DomainConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\FeatureLayerTypeConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\FeatureSetConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\FontDecorationConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\GeomertyConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\GeometryCollectionConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\MapLayerTypeConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\NullableStringEnumConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\RendererConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\SimpleFillSymbolStyleConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\SymbolConverter.cs" />
+    <Compile Include="ApiImports\JsonConverters\TransparentConverter.cs" />
+    <Compile Include="ApiImports\MapServer\AgsExportMapParams.cs" />
+    <Compile Include="ApiImports\MapServer\AgsFindParams.cs" />
+    <Compile Include="ApiImports\MapServer\AgsIdentifyParams.cs" />
+    <Compile Include="ApiImports\MapServer\AgsQueryMapLayerParams.cs" />
+    <Compile Include="ApiImports\MapServer\AllLayersTablesInfo.cs" />
+    <Compile Include="ApiImports\MapServer\DocumentInfo.cs" />
+    <Compile Include="ApiImports\MapServer\ExportMapResponse.cs" />
+    <Compile Include="ApiImports\MapServer\FindFeatureResults.cs" />
+    <Compile Include="ApiImports\MapServer\FoundFeature.cs" />
+    <Compile Include="ApiImports\MapServer\IdentifyFeature.cs" />
+    <Compile Include="ApiImports\MapServer\IdentifyFeatureResults.cs" />
+    <Compile Include="ApiImports\MapServer\ImageDisplay.cs" />
+    <Compile Include="ApiImports\MapServer\ImageSize.cs" />
+    <Compile Include="ApiImports\MapServer\LayerDisplay.cs" />
+    <Compile Include="ApiImports\MapServer\LayerIdentifyOperation.cs" />
+    <Compile Include="ApiImports\MapServer\Lod.cs" />
+    <Compile Include="ApiImports\MapServer\MapImage.cs" />
+    <Compile Include="ApiImports\MapServer\MapServiceInfo.cs" />
+    <Compile Include="ApiImports\MapServer\MapServiceLayerSummaryInfo.cs" />
+    <Compile Include="ApiImports\MapServer\MapServiceLayerTableInfo.cs" />
+    <Compile Include="ApiImports\MapServer\TileInfo.cs" />
+    <Compile Include="ApiImports\Table\CodedValueDomain.cs" />
+    <Compile Include="ApiImports\Table\CodeValue.cs" />
+    <Compile Include="ApiImports\Table\DomainBase.cs" />
+    <Compile Include="ApiImports\Table\Feature.cs" />
+    <Compile Include="ApiImports\Table\FeatureField.cs" />
+    <Compile Include="ApiImports\Table\FeatureIdSet.cs" />
+    <Compile Include="ApiImports\Table\FeatureItem.cs" />
+    <Compile Include="ApiImports\Table\FeatureRelationshipPair.cs" />
+    <Compile Include="ApiImports\Table\FeatureSet.cs" />
+    <Compile Include="ApiImports\Table\FeatureTemplate.cs" />
+    <Compile Include="ApiImports\Table\FeatureTypeInfo.cs" />
+    <Compile Include="ApiImports\Table\FieldsFilter.cs" />
+    <Compile Include="ApiImports\Table\RangeDomain.cs" />
+    <Compile Include="ApiImports\Time\ExportOptions.cs" />
+    <Compile Include="ApiImports\Time\TimeInfo.cs" />
+    <Compile Include="ApiImports\Time\TimeReference.cs" />
+    <Compile Include="AutoMapMappers\CollectionMapperBase.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Catelog\CatelogFolderItemMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Catelog\CatelogServerInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Catelog\DicNameTypePairsMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Catelog\KeyValueNameTypePairMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\ColorMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\DrawingInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Label\LabelClassesMappers.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Label\LabelClassMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Render\ClassBreakInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Render\ClassBreakInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Render\ClassBreaksRendererMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Render\RendererBaseMaper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Render\SimpleRendererMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Render\UniqueValueInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Render\UniqueValueInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Render\UniqueValueRendererMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\ColorSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\FontMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\PictureFillSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\PictureMarkerSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\SimpleFillSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\SimpleLineSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\SimpleMarkerSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\SymbolBaseMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Drawing\Symbol\TextSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\FeatureServer\CapabilityStringMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\FeatureServer\FeatureLayerInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\FeatureServer\FeatureLayerInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\FeatureServer\FeatureServerInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\EnvelopeMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\GeometryBaseMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\LineMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\LinesMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\MultipointMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\PointMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\PointsMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\PolygonMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\PolylineMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Geometry\SpatialReferenceMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\IdNamePairMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\IdNamePairsMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\DocumentInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\LODMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\LODsMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\MapLayerIndexesMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\MapLayerIndexMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\MapLayerInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\MapLayerInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\MapServerInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\MapServer\TileInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\AttributesMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\CodedValueDomainMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\CodeValueMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\CodeValuesMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\DomainBaseMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\DomainBasesMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\FeatureMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\FeatureTemplateMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\FeatureTemplatesMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\FeatureTypeInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\FeatureValueBaseMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\FieldMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\FieldsMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\RangeDomainMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\RelationshipPairMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Table\RelationshipPairsMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Time\ExportOptionsMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Time\TimeExtentMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Time\TimeInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\DescriptionMappers\Time\TimeReferenceMapper.cs" />
+    <Compile Include="AutoMapMappers\FlagEnumStringConverter.cs" />
+    <Compile Include="AutoMapMappers\ReflectionProfileMapperAttribute.cs" />
+    <Compile Include="AutoMapMappers\RelectionAutoMapperProfile.cs" />
+    <Compile Include="AutoMapMappers\RelectionAutoMapperProfileBase.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Catelog\CatelogFolderItemMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Catelog\NameTypePairMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Catelog\NameTypePairsMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Catelog\ServerInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\ColorMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\DrawingInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Label\LabelClassesMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Label\LabelClassMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Render\ClassBreakInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Render\ClassBreakInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Render\ClassBreaksRendererMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Render\RendererBaseMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Render\SimpleRendererMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Render\UniqueValueInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Render\UniqueValueInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Render\UniqueValueRendererMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\FontMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\ImageMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\PictureFillSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\PictureMarkerSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\SimpleFillSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\SimpleLineSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\SimpleMarkerSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\SymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Drawing\Symbol\TextSymbolMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\FeatureServer\FeatureServiceInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\FeatureServer\FeatureServiceLayerInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\FeatureServer\FeatureServiceLayerInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\FeatureServer\StringCapabilityMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\AgsEnvelopeMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\AgsGeometryBaseMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\AgsMultipointMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\AgsPointMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\AgsPolygonMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\AgsPolylineMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\AgsSpatialReferenceMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\LineMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\LinesMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Geometry\PointsMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\IdNamePairMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\IdNamePairsMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\DocumentInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\LodMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\LODsMappers.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\MapServiceInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\MapServiceLayerSummaryInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\MapServiceLayerSummaryInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\MapServiceLayerTableInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\MapServiceLayerTableInfosMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\StringCapabilityMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\MapServer\TileInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\AttributesMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\CodedValueDomainMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\CodeValueMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\CodeValuesMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\DomainBaseMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\FeatureFieldMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\FeatureFieldsMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\FeatureMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\FeatureRelationshipPairMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\FeatureRelationshipPairsMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\FeatureTemplateMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\FeatureTemplatesMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\FeatureTypeInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\ObjectFeatureBaseValueMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Table\RangeDomainMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Time\ExportOptionsMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Time\TimeExtentMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Time\TimeInfoMapper.cs" />
+    <Compile Include="AutoMapMappers\RestApiMappers\Time\TimeReferenceMapper.cs" />
+    <Compile Include="AutoMapMappers\StringFlagEnumConverter.cs" />
+    <Compile Include="Description\Catelog\CatelogFolderItem.cs" />
+    <Compile Include="Description\Catelog\CatelogServerInfo.cs" />
+    <Compile Include="Description\Drawing\BinaryImage.cs" />
+    <Compile Include="Description\Drawing\Color.cs" />
+    <Compile Include="Description\Drawing\DrawingInfo.cs" />
+    <Compile Include="Description\Drawing\Label\LabelClass.cs" />
+    <Compile Include="Description\Drawing\Render\ClassBreakInfo.cs" />
+    <Compile Include="Description\Drawing\Render\ClassBreaksRenderer.cs" />
+    <Compile Include="Description\Drawing\Render\RendererBase.cs" />
+    <Compile Include="Description\Drawing\Render\SimpleRenderer.cs" />
+    <Compile Include="Description\Drawing\Render\UniqueValueInfo.cs" />
+    <Compile Include="Description\Drawing\Render\UniqueValueRenderer.cs" />
+    <Compile Include="Description\Drawing\Symbol\ColorSymbol.cs" />
+    <Compile Include="Description\Drawing\Symbol\Font.cs" />
+    <Compile Include="Description\Drawing\Symbol\PictureFillSymbol.cs" />
+    <Compile Include="Description\Drawing\Symbol\PictureMarkerSymbol.cs" />
+    <Compile Include="Description\Drawing\Symbol\SimpleFillSymbol.cs" />
+    <Compile Include="Description\Drawing\Symbol\SimpleLineSymbol.cs" />
+    <Compile Include="Description\Drawing\Symbol\SimpleMarkerSymbol.cs" />
+    <Compile Include="Description\Drawing\Symbol\SymbolBase.cs" />
+    <Compile Include="Description\Drawing\Symbol\TextSymbol.cs" />
+    <Compile Include="Description\FeatureServer\Enums.cs" />
+    <Compile Include="Description\FeatureServer\FeatureLayerInfo.cs" />
+    <Compile Include="Description\FeatureServer\FeatureServerInfo.cs" />
+    <Compile Include="Description\Geometry\Envelope.cs" />
+    <Compile Include="Description\Geometry\GeometryBase.cs" />
+    <Compile Include="Description\Geometry\Line.cs" />
+    <Compile Include="Description\Geometry\Multipoint.cs" />
+    <Compile Include="Description\Geometry\Point.cs" />
+    <Compile Include="Description\Geometry\Polygon.cs" />
+    <Compile Include="Description\Geometry\Polyline.cs" />
+    <Compile Include="Description\Geometry\SpatialReference.cs" />
+    <Compile Include="Description\IdNamePair.cs" />
+    <Compile Include="Description\MapServer\Enums.cs" />
+    <Compile Include="Description\MapServer\LOD.cs" />
+    <Compile Include="Description\MapServer\MapLayerIndex.cs" />
+    <Compile Include="Description\MapServer\MapLayerInfo.cs" />
+    <Compile Include="Description\MapServer\MapServerInfo.cs" />
+    <Compile Include="Description\MapServer\TileInfo.cs" />
+    <Compile Include="Description\Table\CodedValueDomain.cs" />
+    <Compile Include="Description\Table\CodeValue.cs" />
+    <Compile Include="Description\Table\DomainBase.cs" />
+    <Compile Include="Description\Table\Feature.cs" />
+    <Compile Include="Description\Table\FeatureDoubleValue.cs" />
+    <Compile Include="Description\Table\FeatureStringValue.cs" />
+    <Compile Include="Description\Table\FeatureTemplate.cs" />
+    <Compile Include="Description\Table\FeatureTypeInfo.cs" />
+    <Compile Include="Description\Table\FeatureValueBase.cs" />
+    <Compile Include="Description\Table\Field.cs" />
+    <Compile Include="Description\Table\RangeDomain.cs" />
+    <Compile Include="Description\Table\RelationshipPair.cs" />
+    <Compile Include="Description\Time\ExportOptions.cs" />
+    <Compile Include="Description\Time\TimeExtent.cs" />
+    <Compile Include="Description\Time\TimeInfo.cs" />
+    <Compile Include="Description\Time\TimeReference.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Namespaces.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\BDCSJH\TH.BDCSJH.MvcService\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\..\BDCSJH\TH.BDCSJH.MvcService\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

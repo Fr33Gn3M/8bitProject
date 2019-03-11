@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<RuleArray xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Rules>
+    <RuleModel>
+      <Name>服务器IP</Name>
+      <Key>192.168.1.111</Key>
+      <Value>192.168.1.111</Value>
+      <FilePath>../TH.SkySeaMapService.ServiceHost.exe.Config</FilePath>
+    </RuleModel>
+    <RuleModel>
+      <Name>控件ArcGIS IP</Name>
+      <Key>192.168.1.111</Key>
+      <Value>192.168.1.111</Value>
+      <FilePath>../Javascripts/arcgis_js_api/init.js</FilePath>
+      <FilePath>../Javascripts/arcgis_js_api/dojo/dojo.js</FilePath>
+      <FilePath>../Javascripts/SkySeaMap.css</FilePath>
+    </RuleModel>
+    <RuleModel>
+      <Name>控件服务域名</Name>
+      <Key>192.168.1.111/thth/map</Key>
+      <Value>192.168.1.111/thth/map</Value>
+      <FilePath>../Javascripts/SkySeaMap.js</FilePath>
+    </RuleModel>
+  </Rules>
+</RuleArray>
