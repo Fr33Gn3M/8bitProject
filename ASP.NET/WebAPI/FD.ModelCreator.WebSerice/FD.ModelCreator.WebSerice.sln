@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FD.ModelCreator.WebSerice", "FD.ModelCreator.WebSerice\FD.ModelCreator.WebSerice.csproj", "{BB7CB2B1-180E-457F-8F1A-6CED5A4A2002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FD.DataBase", "..\..\PublicProject\FD.DataBase\FD.DataBase.csproj", "{BCDC4CEE-A3E7-426C-A7A2-E8ED4E0BCE74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FD.ExceptionManager", "..\..\PublicProject\FD.ExceptionManager\FD.ExceptionManager.csproj", "{F6A9B68E-F0D5-4A41-858B-B20F0FA9D27C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FD.Commons", "..\..\PublicProject\FD.Commons\FD.Commons.csproj", "{B3DE56FB-E05A-464C-95F7-EDB5EFE334F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FD.HistoryDataManager", "..\..\PublicProject\FD.HistoryDataManager\FD.HistoryDataManager.csproj", "{FF6184D5-D011-4E62-A9DC-8850779DFFCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FD.DataModels", "..\..\PublicProject\FD.DataModels\FD.DataModels.csproj", "{3C2CAB9B-118D-48B9-AE74-50E36EEFA5BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB7CB2B1-180E-457F-8F1A-6CED5A4A2002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB7CB2B1-180E-457F-8F1A-6CED5A4A2002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB7CB2B1-180E-457F-8F1A-6CED5A4A2002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB7CB2B1-180E-457F-8F1A-6CED5A4A2002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCDC4CEE-A3E7-426C-A7A2-E8ED4E0BCE74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCDC4CEE-A3E7-426C-A7A2-E8ED4E0BCE74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCDC4CEE-A3E7-426C-A7A2-E8ED4E0BCE74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCDC4CEE-A3E7-426C-A7A2-E8ED4E0BCE74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A9B68E-F0D5-4A41-858B-B20F0FA9D27C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A9B68E-F0D5-4A41-858B-B20F0FA9D27C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A9B68E-F0D5-4A41-858B-B20F0FA9D27C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A9B68E-F0D5-4A41-858B-B20F0FA9D27C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3DE56FB-E05A-464C-95F7-EDB5EFE334F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3DE56FB-E05A-464C-95F7-EDB5EFE334F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3DE56FB-E05A-464C-95F7-EDB5EFE334F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3DE56FB-E05A-464C-95F7-EDB5EFE334F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF6184D5-D011-4E62-A9DC-8850779DFFCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF6184D5-D011-4E62-A9DC-8850779DFFCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF6184D5-D011-4E62-A9DC-8850779DFFCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF6184D5-D011-4E62-A9DC-8850779DFFCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C2CAB9B-118D-48B9-AE74-50E36EEFA5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2CAB9B-118D-48B9-AE74-50E36EEFA5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2CAB9B-118D-48B9-AE74-50E36EEFA5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2CAB9B-118D-48B9-AE74-50E36EEFA5BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FCE30E3F-D40E-41AA-8234-FEF18990EECF}
+	EndGlobalSection
+EndGlobal

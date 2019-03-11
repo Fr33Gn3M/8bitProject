@@ -1,6 +1,11 @@
 ##############################
 ## Folders                  ##
 ##############################
+ASP.NET/WebAPI/FD.ModelCreator.WebSerice/FD.ModelCreator.WebSerice/bin
+ASP.NET/WebAPI/FD.ModelCreator.WebSerice/FD.ModelCreator.WebSerice/obj
+ASP.NET/WebAPI/FD.ModelCreator.WebSerice/packages
+ASP.NET/WebAPI/FD.ModelCreator.WebSerice/.vs
+
 ASP.NET/WebAPI/FD.WebSerice/FD.WebSerice/bin
 ASP.NET/WebAPI/FD.WebSerice/FD.WebSerice/obj
 ASP.NET/WebAPI/FD.WebSerice/packages
