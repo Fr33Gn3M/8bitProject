@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<MessageInfoArr xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <MessageInfos>
+    <MessageInfo>
+      <Code>9999</Code>
+      <Message>服务出错!</Message>
+      <Type>System</Type>
+      <Level>1</Level>
+    </MessageInfo>
+  </MessageInfos>
+</MessageInfoArr>

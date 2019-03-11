@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C2CAB9B-118D-48B9-AE74-50E36EEFA5BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FD.DataModels</RootNamespace>
+    <AssemblyName>FD.DataModels</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseModels\SJ_SJLCB.cs" />
+    <Compile Include="BaseModels\SJ_SJLCJDB.cs" />
+    <Compile Include="BaseModels\SJ_SJLCJLB.cs" />
+    <Compile Include="BaseModels\SJ_SJZB.cs" />
+    <Compile Include="BaseModels\SYS_DBMBPZB.cs" />
+    <Compile Include="BaseModels\SYS_DLFWB.cs" />
+    <Compile Include="BaseModels\SYS_DLRZB.cs" />
+    <Compile Include="BaseModels\SYS_DWBMB.cs" />
+    <Compile Include="BaseModels\SYS_GNJSB.cs" />
+    <Compile Include="BaseModels\SYS_GNMKB.cs" />
+    <Compile Include="BaseModels\SYS_GSXXB.cs" />
+    <Compile Include="BaseModels\SYS_JSGNB.cs" />
+    <Compile Include="BaseModels\SYS_LSBMDZB.cs" />
+    <Compile Include="BaseModels\SYS_PZB.cs" />
+    <Compile Include="BaseModels\SYS_SJZDB.cs" />
+    <Compile Include="BaseModels\SYS_XTSZB.cs" />
+    <Compile Include="BaseModels\SYS_XXB.cs" />
+    <Compile Include="BaseModels\SYS_XXJSRB.cs" />
+    <Compile Include="BaseModels\SYS_YHB.cs" />
+    <Compile Include="BaseModels\SYS_YHJSQXB.cs" />
+    <Compile Include="BaseModels\VWSJ_SJDYJDB.cs" />
+    <Compile Include="BaseModels\VWSJ_SJJDJLB.cs" />
+    <Compile Include="BaseModels\VWSJ_SJJJCDB.cs" />
+    <Compile Include="BaseModels\VWSJ_SJLCB.cs" />
+    <Compile Include="BaseModels\VWSJ_SJLCJDB.cs" />
+    <Compile Include="BaseModels\VWSJ_SJLCJLB.cs" />
+    <Compile Include="BaseModels\VWSJ_SJZB.cs" />
+    <Compile Include="BaseModels\VWSYS_XXTSB.cs" />
+    <Compile Include="BaseModels\VWXMBJXQB.cs" />
+    <Compile Include="BaseModels\VWXMPQB.cs" />
+    <Compile Include="BaseModels\VWXMYHQXB.cs" />
+    <Compile Include="BaseModels\VWXMYYB.cs" />
+    <Compile Include="BaseModels\VWYHJSB.cs" />
+    <Compile Include="BaseModels\VWYYMBZDB.cs" />
+    <Compile Include="BaseModels\VWZTYWYYPZB.cs" />
+    <Compile Include="BaseModels\VWZTYWYYZDB.cs" />
+    <Compile Include="BaseModels\VWZTYYTCPZB.cs" />
+    <Compile Include="BaseModels\XM_XMB.cs" />
+    <Compile Include="BaseModels\XM_XMSSQQB.cs" />
+    <Compile Include="BaseModels\XM_XMYHQXB.cs" />
+    <Compile Include="BaseModels\XM_XXSSBJB.cs" />
+    <Compile Include="BaseModels\ZT_YWYYB.cs" />
+    <Compile Include="BaseModels\ZT_YYPZB.cs" />
+    <Compile Include="BaseModels\ZT_YYTCXRB.cs" />
+    <Compile Include="BaseModels\ZT_YYZDB.cs" />
+    <Compile Include="DataBaseTableName.cs" />
+    <Compile Include="DBBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

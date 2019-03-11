@@ -6,6 +6,17 @@ ASP.NET/WebAPI/FD.WebSerice/FD.WebSerice/obj
 ASP.NET/WebAPI/FD.WebSerice/packages
 ASP.NET/WebAPI/FD.WebSerice/.vs
 
+ASP.NET/PublicProject/FD.Commons/bin
+ASP.NET/PublicProject/FD.Commons/obj
+ASP.NET/PublicProject/FD.DataBase/bin
+ASP.NET/PublicProject/FD.DataBase/obj
+ASP.NET/PublicProject/FD.DataModels/bin
+ASP.NET/PublicProject/FD.DataModels/obj
+ASP.NET/PublicProject/FD.ExceptionManager/bin
+ASP.NET/PublicProject/FD.ExceptionManager/obj
+ASP.NET/PublicProject/FD.HistoryDataManager/bin
+ASP.NET/PublicProject/FD.HistoryDataManager/obj
+
 ASP.NET/ConsoleApp/.vs
 ASP.NET/ConsoleApp/ConsoleApp/bin
 ASP.NET/ConsoleApp/ConsoleApp/obj
