@@ -1,28 +1,10 @@
 ##############################
 ## Folders                  ##
 ##############################
-ASP.NET/WebAPI/FM.WebAPI/packages
-ASP.NET/WebAPI/FM.WebAPI/FM.Common/bin
-ASP.NET/WebAPI/FM.WebAPI/FM.Common/obj
-ASP.NET/WebAPI/FM.WebAPI/FM.WebAPI/bin
-ASP.NET/WebAPI/FM.WebAPI/FM.WebAPI/obj
-ASP.NET/WebAPI/FM.WebAPI/FM.DAL/bin
-ASP.NET/WebAPI/FM.WebAPI/FM.DAL/obj
-ASP.NET/WebAPI/FM.WebAPI/FM.WebAPI.Tests/bin
-ASP.NET/WebAPI/FM.WebAPI/FM.WebAPI.Tests/obj
-ASP.NET/WebAPI/FM.WebAPI/.vs
-ASP.NET/WebAPI/WebAPIWithGIS/packages
-ASP.NET/WebAPI/WebAPIWithGIS/Model/bin
-ASP.NET/WebAPI/WebAPIWithGIS/Model/obj
-ASP.NET/WebAPI/WebAPIWithGIS/ArcGIsLib/bin
-ASP.NET/WebAPI/WebAPIWithGIS/ArcGIsLib/obj
-ASP.NET/WebAPI/WebAPIWithGIS/Common/bin
-ASP.NET/WebAPI/WebAPIWithGIS/Common/obj
-ASP.NET/WebAPI/WebAPIWithGIS/Computing/bin
-ASP.NET/WebAPI/WebAPIWithGIS/Computing/obj
-ASP.NET/WebAPI/WebAPIWithGIS/DAL/bin
-ASP.NET/WebAPI/WebAPIWithGIS/DAL/obj
-ASP.NET/WebAPI/WebAPIWithGIS/.vs
+ASP.NET/WebAPI/FD.WebSerice/FD.WebSerice/bin
+ASP.NET/WebAPI/FD.WebSerice/FD.WebSerice/obj
+ASP.NET/WebAPI/FD.WebSerice/packages
+ASP.NET/WebAPI/FD.WebSerice/.vs
 
 ASP.NET/ConsoleApp/.vs
 ASP.NET/ConsoleApp/ConsoleApp/bin
