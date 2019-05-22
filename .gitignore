@@ -1,15 +1,13 @@
 ##############################
 ## Folders                  ##
 ##############################
-ASP.NET/WebAPI/FD.ModelCreator.WebSerice/FD.ModelCreator.WebSerice/bin
-ASP.NET/WebAPI/FD.ModelCreator.WebSerice/FD.ModelCreator.WebSerice/obj
-ASP.NET/WebAPI/FD.ModelCreator.WebSerice/packages
-ASP.NET/WebAPI/FD.ModelCreator.WebSerice/.vs
 
-ASP.NET/WebAPI/FD.WebSerice/FD.WebSerice/bin
-ASP.NET/WebAPI/FD.WebSerice/FD.WebSerice/obj
-ASP.NET/WebAPI/FD.WebSerice/packages
-ASP.NET/WebAPI/FD.WebSerice/.vs
+ASP.NET/MvcService/.vs
+ASP.NET/MvcService/FD.MvcService/bin
+ASP.NET/MvcService/FD.MvcService/obj
+
+ASP.NET/TH
+ASP.NET/packages
 
 ASP.NET/PublicProject/FD.Commons/bin
 ASP.NET/PublicProject/FD.Commons/obj
@@ -27,6 +25,7 @@ ASP.NET/ConsoleApp/ConsoleApp/bin
 ASP.NET/ConsoleApp/ConsoleApp/obj
 ASP.NET/ConsoleApp/Lesson1/bin
 ASP.NET/ConsoleApp/Lesson1/obj
+
 ##############################
 ## Files                    ##
 ##############################
