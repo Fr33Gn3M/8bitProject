@@ -3,17 +3,47 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace TH.ExceptionManager
+namespace FD.ExceptionManager
 {
+    public class ServiceException : Exception
+    {
+        public int Code { get; set; }
+        public ServiceException(string message)
+        {
+            Code = MessageTypeCode.NotKnown;
+            FMessage = message;
+        }
+
+        private string FMessage = string.Empty;
+        public override string Message
+        {
+            get
+            {
+                return FMessage;
+            }
+        }
+
+        public ServiceException(int code)
+        {
+            Code = code;
+            if (MessageTypeCode.MessageInfos.ContainsKey(code))
+                FMessage = MessageTypeCode.MessageInfos[code].Message;
+            else
+                FMessage = "Code:" + code.ToString();
+        }
+
+        public ServiceException(int code, string message)
+        {
+            Code = code;
+            FMessage = message;
+        }
+
+    }
+
     public class MessageTypeCode
     {
-        public const int Error = 9999;
+        public const int NotKnown = 9999;
         public const int Success = 1000;
-        //public const int UserAuthentication = 101;
-        //public const int DefineCode1001 = 1001;
-        //public const int DefineCode1002 = 1002;
-        //public const int DefineCode1003 = 1003;
-        //public const int DefineCode1004 = 1004;
 
         private static IDictionary<int, MessageInfo> m_MessageInfos;
         internal static IDictionary<int, MessageInfo> MessageInfos
@@ -62,38 +92,5 @@ namespace TH.ExceptionManager
         public string Message { get; set; }
     }
 
-    public class ServiceException : Exception
-    {
-        public int Code { get; set; }
-        public ServiceException(string message)
-        {
-            Code = MessageTypeCode.Error;
-            FMessage = message;
-        }
-
-        private string FMessage = string.Empty;
-        public override string Message
-        {
-            get
-            {
-                return FMessage;
-            }
-        }
-
-        public ServiceException(int code)
-        {
-            Code = code;
-            if (MessageTypeCode.MessageInfos.ContainsKey(code))
-                FMessage = MessageTypeCode.MessageInfos[code].Message;
-            else
-                FMessage = "Code:"+code.ToString();
-        }
-
-        public ServiceException(int code,string message)
-        {
-            Code = code;
-            FMessage = message;
-        }
-
-    }
+    
 }

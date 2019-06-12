@@ -1,14 +1,9 @@
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using Newtonsoft.Json;
+using System;
 
 namespace FD.DataBase.JsonConverters
 {
-	[Serializable()]
+    [Serializable()]
 	public class QueryFilterCollectionConverter : CollectionConverterBase<QueryFilterBase>
 	{
 

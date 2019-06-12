@@ -1,20 +1,14 @@
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FD.DataBase.JsonConverters
 {
-	[Serializable()]
+    [Serializable()]
 	public abstract class CollectionConverterBase<T> : JsonConverter
 	{
-
 		protected abstract JsonConverter CreateElemConverter();
-
 
 		public override bool CanConvert(Type objectType)
 		{
