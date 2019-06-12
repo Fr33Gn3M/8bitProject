@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Data;
 
 namespace FD.DataBase
@@ -74,7 +75,7 @@ namespace FD.DataBase
                 Conn = new System.Data.SQLite.SQLiteConnection();
             else
                 if (providerName.Contains("OracleClient"))
-                    Conn = new DDTek.Oracle.OracleConnection();
+                    Conn = new OracleConnection();
                 else
                     if (providerName.Contains("MySqlClient"))
                         Conn = new MySql.Data.MySqlClient.MySqlConnection();
@@ -105,12 +106,12 @@ namespace FD.DataBase
                 da.Fill(dt);
                 return dt;
             }
-            if (Conn is DDTek.Oracle.OracleConnection)
+            if (Conn is OracleConnection)
             {
-                var cmd = Conn.CreateCommand() as DDTek.Oracle.OracleCommand;
+                var cmd = Conn.CreateCommand() as OracleCommand;
                 cmd.CommandText = sql;
                 cmd.CommandTimeout = 180;
-                var da = new DDTek.Oracle.OracleDataAdapter(cmd);
+                var da = new OracleDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 return dt;
