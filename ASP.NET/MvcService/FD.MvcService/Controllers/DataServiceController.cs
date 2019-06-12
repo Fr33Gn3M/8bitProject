@@ -23,11 +23,11 @@ namespace FD.MvcService.Controllers
             {
                 string filter = Request["filter"];
                 var filters = JsonConvert.DeserializeObject<QueryPageFilter>(filter);
-                //var objs = ServiceAppContext.Instance.DataBaseHelper.GetQueryResultN(filters, ref count);
+                var objs = ServiceAppContext.Instance.DataBaseHelper.GetQueryResult(filters, ref count);
                 object[] info = null;
-                //info = objs;
-                //result.Rows = info;
-                //result.Total = count;
+                info = objs;
+                result.Rows = info;
+                result.Total = count;
                 result.Status = MessageTypeCode.Success;
             }
             catch (Exception ex)
