@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <script src="libs/vue/vue.js"></script>
     <title>Document</title>
 </head>
+
 <body>
     <div id="app">
         {{message}}
@@ -19,39 +21,44 @@
         <p v-if="seen">now</p>
         <button class="ui primary button" v-on:click="reverseMessage()">逆转</button>
         <input v-model.lazy="message" />
-        <todo-item
-            v-for="item in groceryList"
-            v-bind:todo="item"
-            v-bind:key="item.id">
+        <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
         </todo-item>
         <span v-once>这个将不会改变: {{ message }}</span><br>
     </div>
     <script>
-    
-        Vue.component('todo-item',{
-                props:['todo'],
-                template: '<li>{{todo.text}}</li>'
-            })
-    
-            var app = new Vue({
-                el: '#app',
-                data:{
-                    message: 'Hello Vue!',
-                    seen:true,
-                    groceryList:[
-                        {id:0,text:'1'},
-                        {id:1,text:'2'},
-                        {id:2,text:'3'},
-                    ],
-                    message2: 'we can'
-                },
-                
-                methods:{
-                    reverseMessage: function(){
-                        this.message = this.message.split('').reverse().join('');
-                    }
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{todo.text}}</li>'
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                seen: true,
+                groceryList: [{
+                        id: 0,
+                        text: '1'
+                    },
+                    {
+                        id: 1,
+                        text: '2'
+                    },
+                    {
+                        id: 2,
+                        text: '3'
+                    },
+                ],
+                message2: 'we can'
+            },
+
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('');
                 }
-            })
+            }
+        })
     </script>
 </body>
+
 </html>
