@@ -1,4 +1,4 @@
-package com.model.entity;
+package com.demo.entity;
 
 public class User {
 
@@ -57,7 +57,8 @@ public class User {
         this.sex = sex;
     }
 
-    public String getId() {
+    public String getId()
+    {
         return id;
     }
 

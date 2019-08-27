@@ -7,6 +7,9 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
-        <package name="com.model.entity"/>
+        <package name="com.demo.entity"/>
     </typeAliases>
+    <mappers>
+        <mapper resource="/mapper/UserMapper.xml"/>
+    </mappers>
 </configuration>
