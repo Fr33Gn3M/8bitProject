@@ -9,7 +9,4 @@
     <typeAliases>
         <package name="com.demo.entity"/>
     </typeAliases>
-    <mappers>
-        <mapper resource="/mapper/UserMapper.xml"/>
-    </mappers>
 </configuration>
