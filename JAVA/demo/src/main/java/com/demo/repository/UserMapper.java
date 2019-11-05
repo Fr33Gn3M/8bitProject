@@ -1,9 +1,11 @@
 package com.demo.repository;
 
 import com.demo.entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component(value = "UserMapper")
 public interface UserMapper {
 
     /**

@@ -3,7 +3,7 @@
 <mapper namespace="com.demo.repository.UserMapper">
 
     <resultMap id="SysUserResultMap" type="User">
-        <id property="id" column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <id property="id" column="id" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="username" column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="password" column="PASSWORD" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="sex" column="SEX" javaType="java.lang.Integer" jdbcType="INTEGER"/>
