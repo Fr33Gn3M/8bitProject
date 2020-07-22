@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "1d/R92j0tNKwQaWNC6ap/2h/l5PpMByfMnaAyVHXoDgzXbPUmx0OL9g85ry3XjqDLjD5zLLJK5Qsv3461p1OcA==",
+  "success": true,
+  "projectFilePath": "E:\\Project\\DotNetCore\\TestOne\\Commons\\Commons.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\THTH12\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

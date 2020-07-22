@@ -1,0 +1,8 @@
+E:\本地项目\DotNetCore\TestOne\Commons\bin\Debug\netcoreapp3.1\Commons.deps.json
+E:\本地项目\DotNetCore\TestOne\Commons\bin\Debug\netcoreapp3.1\Commons.dll
+E:\本地项目\DotNetCore\TestOne\Commons\obj\Debug\netcoreapp3.1\Commons.AssemblyInfoInputs.cache
+E:\本地项目\DotNetCore\TestOne\Commons\obj\Debug\netcoreapp3.1\Commons.AssemblyInfo.cs
+E:\本地项目\DotNetCore\TestOne\Commons\bin\Debug\netcoreapp3.1\Commons.pdb
+E:\本地项目\DotNetCore\TestOne\Commons\obj\Debug\netcoreapp3.1\Commons.csproj.CoreCompileInputs.cache
+E:\本地项目\DotNetCore\TestOne\Commons\obj\Debug\netcoreapp3.1\Commons.dll
+E:\本地项目\DotNetCore\TestOne\Commons\obj\Debug\netcoreapp3.1\Commons.pdb

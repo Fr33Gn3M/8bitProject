@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestOne</name>
+    </assembly>
+    <members>
+        <member name="T:TestOne.Controllers.DataController">
+            <summary>
+            基础数据操作控制器
+            </summary>
+        </member>
+        <member name="M:TestOne.Controllers.DataController.Index">
+            <summary>
+            判断服务是否正常
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TestOne.Controllers.DataController.Query(System.String)">
+            <summary>
+            query方法
+            </summary>
+            <param name="filter">过滤器</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestOne.Controllers.LoginController.Login(System.String,System.String)">
+            <summary>
+            登录接口
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="passWord">密码</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
