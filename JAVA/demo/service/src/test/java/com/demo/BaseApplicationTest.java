@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 //测试类的基类，继承了这个类就不用每个类都写注解
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BaseApplicationTest {
+public abstract class BaseApplicationTest {
     @Before
     public void init() {
         System.out.println("开始测试-----------------");
