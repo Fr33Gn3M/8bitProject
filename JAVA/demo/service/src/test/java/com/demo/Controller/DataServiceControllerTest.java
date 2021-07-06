@@ -15,7 +15,4 @@ public class DataServiceControllerTest extends BaseApplicationTest {
     public void isRunning() {
     }
 
-    @Test
-    public void query() {
-    }
 }
