@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.Common;
 using System.IO;
 using System.Data.SQLite;
-using Oracle.ManagedDataAccess.Client;
 
 namespace DataBase
 {
@@ -16,9 +15,7 @@ namespace DataBase
     {
         public DBClassHelper()
         {
-            //
-            // TODO: 在此处添加构造函数逻辑
-            //
+            
         }
 
         ///// <summary>
@@ -79,10 +76,7 @@ namespace DataBase
             if (providerName.Contains("SQLite"))
                 Conn = new SQLiteConnection();
             else
-                if (providerName.Contains("OracleClient"))
-                    Conn = new OracleConnection();
-                else
-                    if (providerName.Contains("MySqlClient"))
+                if (providerName.Contains("MySqlClient"))
                         Conn = new MySql.Data.MySqlClient.MySqlConnection();
                     else
                     {
@@ -107,16 +101,6 @@ namespace DataBase
                 cmd.CommandText = sql;
                 cmd.CommandTimeout = 180;
                 var da = new SQLiteDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                return dt;
-            }
-            if (Conn is OracleConnection)
-            {
-                var cmd = Conn.CreateCommand() as OracleCommand;
-                cmd.CommandText = sql;
-                cmd.CommandTimeout = 180;
-                var da = new OracleDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 return dt;

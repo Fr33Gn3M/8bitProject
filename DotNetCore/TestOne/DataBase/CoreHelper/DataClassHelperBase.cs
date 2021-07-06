@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -388,12 +390,127 @@ namespace DataBase
             conn.Close();
             return result;
         }
+        internal virtual string GetSqlFromTableInfo(SqlTableInfo sql)
+        {
+            SqlFieldList fieldList = new SqlFieldList(sql.TableName);
+            fieldList.PrividerType = CurrPrividerType;
+            foreach (var item in sql.Fields)
+            {
+                if (item.Key == "OBJECTID")
+                    continue;// “OBJECTID”是自增树列，会出现 SQL 语句无法更新标识列 2019/07/29
+                bool IsPkField = false;
+                if (!string.IsNullOrEmpty(sql.KeyFieldName))
+                    IsPkField = item.Key.ToLower() == sql.KeyFieldName.ToLower();
+                if (IsPkField)
+                    fieldList.PrimaryField = new SqlField(item.Key, item.Value, CurrPrividerType);
+                if (CurrPrividerType == SqlPrividerType.Sqlite)
+                {
+                    if (item.Value is DateTime)
+                    {
+                        string str = ((DateTime)item.Value).ToString("s");
+                        fieldList.AddNonPrimaryField(item.Key, str);
+                    }
+                    else
+                    {
+                        fieldList.AddNonPrimaryField(item.Key, item.Value);
+                    }
+                }
+                else
+                {
+                    if (!DicTableToTableNameFields[sql.TableName].ContainsKey(item.Key))
+                        continue;
+                    var typeName = DicTableToTableNameFields[sql.TableName][item.Key];
+                    if (typeName == "datetime" && item.Value != null && !string.IsNullOrEmpty(item.Value.ToString()))
+                    {
+                        var date = DateTime.Parse(item.Value.ToString());
+                        fieldList.AddNonPrimaryField(item.Key, date);
+                    }
+                    else
+                        fieldList.AddNonPrimaryField(item.Key, item.Value);
+                }
+                continue;
+            }
+            return SqlFieldList.GetSqlString(fieldList);
+        }
+        internal virtual void ExecuteSqlList(StringBuilder sqlList)
+        {
+            var conn = DBClassHelper.OpenConnect(CurrConnectionString, SqlHelperFactory.GetSqlPrividerTypeName(CurrPrividerType));
+            int count = DBClassHelper.Execute(sqlList.ToString(), conn);
+        }
+        internal virtual SqlTableInfo[] GetSqlList(string tableName, Dictionary<string, object>[] models, Dictionary<string, string> DataBaseKyFieldTableDic, bool ispart = false)
+        {
+            var list = new List<SqlTableInfo>();
+            foreach (var item in models)
+            {
+                var sql = new SqlTableInfo();
+                sql.TableName = tableName;
+                if (DataBaseKyFieldTableDic.ContainsKey(tableName))
+                    sql.KeyFieldName = DataBaseKyFieldTableDic[tableName];
+                var diclist = item.Where(m => DicTableToTableNameFields[tableName].ContainsKey(m.Key)).ToDictionary(m => m.Key, n => n.Value);
+                if (ispart == false)
+                {
+                    //var noExists = DicTableToTableNameFields[tableName].Where(m => diclist.ContainsKey(m.Key) == false).Select(m => m.Key).ToArray();
+                    //foreach (var field in noExists)
+                    //    diclist.Add(field, null);
+                }
+                sql.Fields = diclist;
+                list.Add(sql);
+            }
+            return list.ToArray();
+        }
+        internal virtual void ExecuteDelSqlList(string tableName, object[] ids)
+        {
+            string tableName1 = tableName;
+            if (TableToTableNameDic != null && TableToTableNameDic.ContainsKey(tableName))
+                tableName1 = TableToTableNameDic[tableName];
+            if (!DataBaseKyFieldTableDic.ContainsKey(tableName1))
+                throw new Exception("缺少表或视图：" + tableName1 + "！请联系开发人员！"); ;
+            StringBuilder builder = new StringBuilder();
+            foreach (var item in ids)
+            {
+                var sqlInfo = new SqlTableInfo();
+                sqlInfo.TableName = tableName1;
+                var keyFieldName = DataBaseKyFieldTableDic[tableName1];
+                sqlInfo.KeyFieldName = keyFieldName;
+                sqlInfo.Fields = new Dictionary<string, object>();
+                sqlInfo.Fields.Add(keyFieldName, item);
+                var sql = GetSqlFromDelTableInfo(sqlInfo);
+                builder.AppendLine(sql);
+            }
+            if (builder.Length > 0)
+                ExecuteSqlList(builder);
+        }
+        internal virtual string GetSqlFromDelTableInfo(SqlTableInfo sql)
+        {
+            SqlFieldList fieldList = new SqlFieldList(sql.TableName);
+            foreach (var item in sql.Fields)
+            {
+                bool IsPkField = false;
+                if (!string.IsNullOrEmpty(sql.KeyFieldName))
+                    IsPkField = item.Key == sql.KeyFieldName;
 
-
-        
+                if (IsPkField)
+                    fieldList.PrimaryField = new SqlField(item.Key, item.Value, CurrPrividerType);
+                fieldList.AddNonPrimaryField(item.Key, item.Value);
+                continue;
+            }
+            return fieldList.GetDeleteString();
+        }
+        internal virtual DataTable GetTableSchema(Dictionary<string, object>[] dicList)
+        {
+            DataTable dt = new DataTable();
+            var keyArr = dicList[0].Keys.ToArray();
+            IList<DataColumn> dcList = new List<DataColumn>();
+            foreach (var item in keyArr)
+            {
+                dcList.Add(new DataColumn(item, typeof(object)));
+            }
+            dt.Columns.AddRange(dcList.ToArray());
+            return dt;
+        }
         #endregion
 
-        #region 方法
+        #region 外部方法
 
         public Dictionary<string, object>[] GetQueryResultN(QueryPageFilter filter)
         {
@@ -414,6 +531,96 @@ namespace DataBase
             }
             return null;
         }
+        public void UpdateObjects(string tableName, Dictionary<string, object>[] dicList, bool isconvertPart = false)
+        {
+            var sqlTableInfoList = GetSqlList(tableName, dicList, DataBaseKyFieldTableDic, isconvertPart);
+            StringBuilder builder = new StringBuilder();
+            foreach (var item in sqlTableInfoList)
+            {
+                var sql = GetSqlFromTableInfo(item);
+                builder.AppendLine(sql);
+            }
+            if (builder.Length > 0)
+                ExecuteSqlList(builder);
+        }
+        public void DeleteObjects(string tableName, string[] Ids)
+        {
+            ExecuteDelSqlList(tableName, Ids);
+        }
+        public void UpdateObjects(Dictionary<string, object> objs, QueryPageFilter filter)
+        {
+            string tableName1 = filter.TableName;
+            if (TableToTableNameDic != null && TableToTableNameDic.ContainsKey(filter.TableName))
+                tableName1 = TableToTableNameDic[filter.TableName];
+            if (!DataBaseKyFieldTableDic.ContainsKey(tableName1))
+                throw new Exception("缺少表或视图：" + tableName1 + "！请联系开发人员！");
+            filter.TableName = tableName1;
+            string whereStr = GetWhereString(filter);
+            StringBuilder fields = new StringBuilder();
+            foreach (var item in objs)
+            {
+                SqlField field;
+                var typeName = DicTableToTableNameFields[filter.TableName][item.Key];
+                if (typeName == "datetime" && item.Value != null)
+                {
+                    var date = DateTime.Parse(item.Value.ToString());
+                    field = new SqlField(item.Key, date, CurrPrividerType);
+                }
+                else
+                    field = new SqlField(item.Key, item.Value, CurrPrividerType);
+                if (fields.Length > 0)
+                    fields.Append(",");
+                fields.Append(field.GetKeyEqualsValueString());
+            }
+
+            var updateSql = string.Format("update {0} set {1} where {2} ", tableName1, fields.ToString(), whereStr);
+            var conn = DBClassHelper.OpenConnect(CurrConnectionString, SqlHelperFactory.GetSqlPrividerTypeName(CurrPrividerType));
+            int count = DBClassHelper.Execute(updateSql, conn);
+            conn.Close();
+        }
+        public void DeleteObjects(QueryPageFilter filters)
+        {
+            string tableName1 = filters.TableName;
+            if (TableToTableNameDic != null && TableToTableNameDic.ContainsKey(filters.TableName))
+                tableName1 = TableToTableNameDic[filters.TableName];
+            if (!DataBaseKyFieldTableDic.ContainsKey(tableName1))
+                throw new Exception("缺少表或视图：" + tableName1 + "！请联系开发人员！");
+            filters.TableName = tableName1;
+            string whereStr = GetWhereString(filters);
+            string strSql = string.Empty;
+            strSql = "delete from " + filters.TableName + " where " + whereStr;
+            var conn = DBClassHelper.OpenConnect(CurrConnectionString, SqlHelperFactory.GetSqlPrividerTypeName(CurrPrividerType));
+            int count = DBClassHelper.Execute(strSql, conn);
+            conn.Close();
+        }
+        public void BatchInsert(string TableName, Dictionary<string, object>[] dicList)
+        {
+            DataTable dt = GetTableSchema(dicList);
+            var keyArr = dicList[0].Keys.ToArray();
+            var conn = DBClassHelper.OpenConnect(CurrConnectionString, SqlHelperFactory.GetSqlPrividerTypeName(CurrPrividerType));
+            if (conn is SqlConnection)
+            {
+                var sqlconn = conn as SqlConnection;
+                SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlconn);
+                bulkCopy.DestinationTableName = TableName;
+                bulkCopy.BatchSize = dicList.Length;
+                foreach (var obj in dicList)
+                {
+                    DataRow dr = dt.NewRow();
+                    foreach (var item in keyArr)
+                    {
+                        dr[item] = obj[item];
+                    }
+                    dt.Rows.Add(dr);
+                }
+                if (dt != null && dt.Rows.Count != 0)
+                {
+                    bulkCopy.WriteToServer(dt);
+                }
+            }
+            conn.Close();
+        }
+
         public List<Dictionary<string, object>> ConvertDataTable(DataTable table, bool isStringNullToEmpty = false)
         {
             var list = new List<Dictionary<string, object>>();
@@ -431,7 +638,7 @@ namespace DataBase
             }
             return list;
         }
-
         #endregion
+
     }
 }

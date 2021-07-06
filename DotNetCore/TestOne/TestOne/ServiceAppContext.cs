@@ -25,8 +25,8 @@ namespace TestOne
         }
         public void Init()
         {
-            var connStr = System.Configuration.ConfigurationManager.AppSettings["ConntionString"].ToString();
-            DataBaseClassHelper = SqlHelperFactory.GetSqlDataClassHelper(SqlPrividerType.SqlClient, connStr, GetNameSpaceName(this.GetType()));      
+            //var connStr = System.Configuration.ConfigurationManager.AppSettings["ConntionString"].ToString();
+            //DataBaseClassHelper = SqlHelperFactory.GetSqlDataClassHelper(SqlPrividerType.SqlClient, connStr, GetNameSpaceName(this.GetType()));      
 
             InitConfig();
         }

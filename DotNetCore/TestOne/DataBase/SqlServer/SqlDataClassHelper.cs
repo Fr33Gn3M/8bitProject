@@ -335,9 +335,6 @@ namespace DataBase
                     pageSize = 1;
                 //分页查询优化，FZP
                 strSql = string.Format("select {0} from {1} where {2} {3} offset {4} rows fetch next {5} rows only", fields, filters.TableName, whereStr, orderBy, index, pageSize);
-                /*strSql = "select top " + filters.PageSize +" "+ fields + " from " + filters.TableName +
-                   " where " + keyField + " Not In ( select top " + index + " " + keyField + " from " + filters.TableName + " where " + whereStr + orderBy + ") and  ( " + whereStr + " ) " + orderBy;
-                */
             }
             else
             {

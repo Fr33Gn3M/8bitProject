@@ -6,3 +6,11 @@ E:\本地项目\DotNetCore\TestOne\DataBase\obj\Debug\netcoreapp3.1\DataBase.csp
 E:\本地项目\DotNetCore\TestOne\DataBase\bin\Debug\netcoreapp3.1\DataBase.pdb
 E:\本地项目\DotNetCore\TestOne\DataBase\obj\Debug\netcoreapp3.1\DataBase.dll
 E:\本地项目\DotNetCore\TestOne\DataBase\obj\Debug\netcoreapp3.1\DataBase.pdb
+E:\Project\DotNetCore\TestOne\DataBase\obj\Debug\netcoreapp3.1\DataBase.AssemblyInfoInputs.cache
+E:\Project\DotNetCore\TestOne\DataBase\obj\Debug\netcoreapp3.1\DataBase.AssemblyInfo.cs
+E:\Project\DotNetCore\TestOne\DataBase\obj\Debug\netcoreapp3.1\DataBase.csproj.CoreCompileInputs.cache
+E:\Project\DotNetCore\TestOne\DataBase\obj\Debug\netcoreapp3.1\DataBase.dll
+E:\Project\DotNetCore\TestOne\DataBase\obj\Debug\netcoreapp3.1\DataBase.pdb
+E:\Project\DotNetCore\TestOne\DataBase\bin\Debug\netcoreapp3.1\DataBase.deps.json
+E:\Project\DotNetCore\TestOne\DataBase\bin\Debug\netcoreapp3.1\DataBase.dll
+E:\Project\DotNetCore\TestOne\DataBase\bin\Debug\netcoreapp3.1\DataBase.pdb

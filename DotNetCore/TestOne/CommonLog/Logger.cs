@@ -1,0 +1,90 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace CommonLog
+{
+    public class Logger
+    {
+        NLog.Logger logger;
+
+        private Logger(NLog.Logger logger)
+        {
+            this.logger = logger;
+        }
+
+        public Logger(string name) : this(NLog.LogManager.GetLogger(name)) { }
+
+        public static Logger Default { get; private set; }
+        static Logger()
+        {
+            Default = new Logger(NLog.LogManager.GetCurrentClassLogger());
+        }
+
+        public void Debug(string msg, params object[] args)
+        {
+            logger.Debug(msg, args);
+        }
+
+        public void Debug(Exception err, string msg)
+        {
+            logger.Debug(err, msg);
+        }
+
+        /// <summary>
+        /// 示例用法 CommonLog.Logger.Default.Info("yes:{0},no:{1}",new object[]{ "1","2" });
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="args"></param>
+        public void Info(string msg, params object[] args)
+        {
+            logger.Info(msg, args);
+        }
+
+        public void Info(Exception err, string msg)
+        {
+            logger.Info(err, msg);
+        }
+
+        public void Trace(string msg, params object[] args)
+        {
+            logger.Trace(msg, args);
+        }
+
+        public void Trace(Exception err, string msg)
+        {
+            logger.Trace(err, msg);
+        }
+
+        public void Error(string msg, params object[] args)
+        {
+            logger.Error(msg, args);
+        }
+
+        public void Error(Exception err, string msg)
+        {
+            logger.Error(err, msg);
+        }
+
+        public void Fatal(string msg, params object[] args)
+        {
+            logger.Fatal(msg, args);
+        }
+
+        public void Fatal(Exception err, string msg)
+        {
+            logger.Fatal(err, msg);
+        }
+
+        public void Warn(string msg, params object[] args)
+        {
+            logger.Fatal(msg, args);
+        }
+
+        public void Warn(Exception err, string msg)
+        {
+            logger.Fatal(err, msg);
+        }
+    }
+}

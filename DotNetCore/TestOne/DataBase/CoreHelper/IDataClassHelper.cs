@@ -34,5 +34,15 @@ namespace DataBase
         Dictionary<string, Dictionary<string, string>> DicTableToTableNameFields { get; }
 
         Dictionary<string, object>[] GetQueryResultN(QueryPageFilter filter);
+
+        void UpdateObjects(string tableName, Dictionary<string, object>[] dicList, bool isPartialUpdates = false);
+
+        void UpdateObjects(Dictionary<string, object> objs, QueryPageFilter filter);
+
+        void DeleteObjects(string tableName, string[] Ids);
+
+        void DeleteObjects(QueryPageFilter filter);
+
+        void BatchInsert(string TableName, Dictionary<string, object>[] dicList);
     }
 }

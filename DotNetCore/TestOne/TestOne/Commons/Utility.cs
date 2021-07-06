@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TestOne.Commons
@@ -14,6 +15,7 @@ namespace TestOne.Commons
 			public ExJsonResult(object value) : base(value)
 			{
 				JsonSerializerSettings setting = new JsonSerializerSettings();
+
 				// 设置日期序列化的格式  
 				setting.DateFormatHandling = DateFormatHandling.IsoDateFormat;
 				this.SerializerSettings = setting;

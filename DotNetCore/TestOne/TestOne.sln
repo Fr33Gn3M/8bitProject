@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestOne", "TestOne\TestOne.csproj", "{42A87E63-8F53-4315-B8AA-D3B8A9A36E0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{33B49C9E-D3EA-464D-8D1E-921DC7065479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBase", "DataBase\DataBase.csproj", "{33B49C9E-D3EA-464D-8D1E-921DC7065479}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons", "Commons\Commons.csproj", "{C84AEBAD-93F9-46E3-B311-83C11948251B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Commons", "Commons\Commons.csproj", "{C84AEBAD-93F9-46E3-B311-83C11948251B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLog", "CommonLog\CommonLog.csproj", "{09615C9C-4519-46C3-9E67-4B51271D85C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C84AEBAD-93F9-46E3-B311-83C11948251B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C84AEBAD-93F9-46E3-B311-83C11948251B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C84AEBAD-93F9-46E3-B311-83C11948251B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09615C9C-4519-46C3-9E67-4B51271D85C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09615C9C-4519-46C3-9E67-4B51271D85C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09615C9C-4519-46C3-9E67-4B51271D85C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09615C9C-4519-46C3-9E67-4B51271D85C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
