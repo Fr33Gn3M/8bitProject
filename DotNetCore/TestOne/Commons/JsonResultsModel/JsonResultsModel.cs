@@ -3,12 +3,11 @@ using System;
 
 namespace Commons
 {
-    public class JsonResults
+    public class JsonResultModel
     {
-        public JsonResults()
+        public JsonResultModel()
         {
-            Code = (int)ResultCode.SUCCESS;
-            Msg = EnumHelper.GetDescriptionByEnum(ResultCode.SUCCESS);
+
         }
 
         /// <summary>
@@ -33,23 +32,42 @@ namespace Commons
         [JsonProperty("total")]
         public int Total { get; set; }
 
-        public JsonResults setCode(ResultCode code)
+        public JsonResultModel Ok()
+        {
+            Code = (int)ResultCode.SUCCESS;
+            Msg = EnumHelper.GetDescriptionByEnum(ResultCode.SUCCESS);
+            return this;
+        }
+
+        public JsonResultModel AuthFail()
+        {
+            Code = (int)ResultCode.AUTHFAIL;
+            Msg = EnumHelper.GetDescriptionByEnum(ResultCode.AUTHFAIL);
+            return this;
+        }
+
+        public JsonResultModel SetCode(ResultCode code)
         {
             this.Code = (int)code;
             this.Msg = EnumHelper.GetDescriptionByEnum(code);
             return this;
         }
-        public JsonResults setData<T>(T data)
+        public JsonResultModel SetCode(int code)
+        {
+            this.Code = (int)code;
+            return this;
+        }
+        public JsonResultModel SetData<T>(T data)
         {
             this.Data = data;
             return this;
         }
-        public JsonResults setMsg(String msg)
+        public JsonResultModel SetMsg(String msg)
         {
             this.Msg = msg;
             return this;
         }
-        public JsonResults setTotal(int total)
+        public JsonResultModel SetTotal(int total)
         {
             this.Total = total;
             return this;

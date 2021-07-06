@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CommonLog;
 using Commons;
 using DataBase;
+using ExceptionManager;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Bcpg.OpenPgp;
@@ -21,10 +22,10 @@ namespace TestOne.Controllers
         /// 判断服务是否正常
         /// </summary>
         /// <returns></returns>
-        [HttpGet("Index")]
+        [HttpGet("index")]
         public string Index()
         {
-            return "running。。。";          
+            return "running...";          
         }
 
         /// <summary>
@@ -35,19 +36,28 @@ namespace TestOne.Controllers
         [HttpPost("query")]
         public JsonResult Query(string filter)
         {
-            var result = new JsonResults() { };
+            var result = new JsonResultModel() { };
             try
             {
                 var filters = JsonConvert.DeserializeObject<QueryPageFilter>(filter);
                 var objs = ServiceAppContext.Instance.DataBaseClassHelper.GetQueryResultN(filters);
 
-                result.setData(objs).setTotal(objs.Length);
+                result.SetData(objs).SetTotal(objs.Length);
             }
             catch (Exception ex)
             {
-                result.setCode(ResultCode.CUSTOMEXCEPTION).setMsg(ex.Message);
+                if (ex is ApiException)
+                {
+                    ApiException e = ex as ApiException;
+                    result.SetCode(e.Code).SetMsg(e.Message);
+                }
+                else
+                {
+                    result.SetCode(ResultCode.CUSTOMEXCEPTION).SetMsg(ex.Message);
+                }
             }
-            return Utility.GetComResult(result);
+            JsonResult re = new JsonResult(result);
+            return re;
         }
 
         /// <summary>
@@ -60,7 +70,7 @@ namespace TestOne.Controllers
         [HttpPost("update")]
         public JsonResult Update(string objs, string tb, string pu)
         {
-            var result = new JsonResults() { };
+            var result = new JsonResultModel() { };
             try
             {
                 bool isPartialUpdates = false;
@@ -71,9 +81,10 @@ namespace TestOne.Controllers
             }
             catch (Exception ex)
             {
-                result.setCode(ResultCode.CUSTOMEXCEPTION).setMsg(ex.Message);
+                result.SetCode(ResultCode.CUSTOMEXCEPTION).SetMsg(ex.Message);
             }
-            return Utility.GetComResult(result);
+            JsonResult re = new JsonResult(result);
+            return re;
         }
 
         /// <summary>
@@ -85,7 +96,7 @@ namespace TestOne.Controllers
         [HttpPost("delete")]
         public JsonResult Delete(string ids, string tb)
         {
-            var result = new JsonResults() { };
+            var result = new JsonResultModel() { };
             try
             {
                 var idInfos = JsonConvert.DeserializeObject<string[]>(ids);
@@ -93,9 +104,10 @@ namespace TestOne.Controllers
             }
             catch (Exception ex)
             {
-                result.setCode(ResultCode.CUSTOMEXCEPTION).setMsg(ex.Message);
+                result.SetCode(ResultCode.CUSTOMEXCEPTION).SetMsg(ex.Message);
             }
-            return Utility.GetComResult(result);
+            JsonResult re = new JsonResult(result);
+            return re;
         }
 
         /// <summary>
@@ -104,10 +116,10 @@ namespace TestOne.Controllers
         /// <param name="objs">更新模型</param>
         /// <param name="filter">过滤器</param>
         /// <returns></returns>
-        [HttpPost("fupdate")]
+        [HttpPost("filterUpdate")]
         public JsonResult FilterUpdate(string objs, string filter)
         {
-            var result = new JsonResults() { };
+            var result = new JsonResultModel() { };
 
             try
             {
@@ -117,9 +129,10 @@ namespace TestOne.Controllers
             }
             catch (Exception ex)
             {
-                result.setCode(ResultCode.CUSTOMEXCEPTION).setMsg(ex.Message);
+                result.SetCode(ResultCode.CUSTOMEXCEPTION).SetMsg(ex.Message);
             }
-            return Utility.GetComResult(result);
+            JsonResult re = new JsonResult(result);
+            return re;
         }
 
         /// <summary>
@@ -127,10 +140,10 @@ namespace TestOne.Controllers
         /// </summary>
         /// <param name="filter">过滤器</param>
         /// <returns></returns>
-        [HttpPost("fdelete")]
+        [HttpPost("filterDelete")]
         public JsonResult FilterDelete(string filter)
         {
-            var result = new JsonResults() { };
+            var result = new JsonResultModel() { };
 
             try
             {
@@ -139,9 +152,10 @@ namespace TestOne.Controllers
             }
             catch (Exception ex)
             {
-                result.setCode(ResultCode.CUSTOMEXCEPTION).setMsg(ex.Message);
+                result.SetCode(ResultCode.CUSTOMEXCEPTION).SetMsg(ex.Message);
             }
-            return Utility.GetComResult(result);
+            JsonResult re = new JsonResult(result);
+            return re;
         }
 
         /// <summary>
@@ -150,9 +164,10 @@ namespace TestOne.Controllers
         /// <param name="tb">表名</param>
         /// <param name="objs">模型</param>
         /// <returns></returns>
+        [HttpPost("batchInsert")]
         public JsonResult batchInsert(string tb, string objs)
         {
-            var result = new JsonResults() { };
+            var result = new JsonResultModel() { };
 
             try
             {
@@ -161,9 +176,10 @@ namespace TestOne.Controllers
             }
             catch (Exception ex)
             {
-                result.setCode(ResultCode.CUSTOMEXCEPTION).setMsg(ex.Message);
+                result.SetCode(ResultCode.CUSTOMEXCEPTION).SetMsg(ex.Message);
             }
-            return Utility.GetComResult(result);
+            JsonResult re = new JsonResult(result);
+            return re;
         }
     }
 }

@@ -12,13 +12,20 @@ import lombok.Data;
  */
 @Data
 public class JSONResult {
-    // 响应业务状态
-    private Integer status;
 
-    // 响应消息
+    /**
+     * 响应业务状态
+     */
+    private int status;
+
+    /**
+     * 响应消息
+     */
     private String msg;
 
-    // 响应中的数据
+    /**
+     * 响应数据
+     */
     private Object data;
 
     public static JSONResult build(Integer status, String msg, Object data) {

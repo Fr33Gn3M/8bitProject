@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
+using TestOne.Commons;
+using TestOne.Filters;
 
 namespace TestOne
 {
@@ -31,7 +33,10 @@ namespace TestOne
         {
             var title = "myApi";
             var version = "v1";
-            services.AddControllers();
+            services.AddControllers(options=>
+            {
+                options.Filters.Add(typeof(GlobalExceptionFilter));
+            });
             services.AddSwaggerGen(c =>
             {
                 // swaggerÎÄµµÅäÖÃ
@@ -48,6 +53,9 @@ namespace TestOne
                 var xmlPath = Path.Combine(basePath, "TestOne.xml");
                 c.IncludeXmlComments(xmlPath);
 
+            });
+            services.AddMvc().AddJsonOptions((options) => {
+                options.JsonSerializerOptions.Converters.Add(new DatetimeJsonConverter());
             });
         }
 
@@ -75,6 +83,7 @@ namespace TestOne
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }

@@ -26,6 +26,15 @@ ASP.NET/ConsoleApp/ConsoleApp/obj
 ASP.NET/ConsoleApp/Lesson1/bin
 ASP.NET/ConsoleApp/Lesson1/obj
 
+DotNetCore/TestOne/.vs
+DotNetCore/TestOne/CommonLog/bin
+DotNetCore/TestOne/CommonLog/obj
+DotNetCore/TestOne/Commons/bin
+DotNetCore/TestOne/Commons/obj
+DotNetCore/TestOne/DataBase/bin
+DotNetCore/TestOne/DataBase/obj
+DotNetCore/TestOne/TestOne/bin
+DotNetCore/TestOne/TestOne/obj
 ##############################
 ## Files                    ##
 ##############################
