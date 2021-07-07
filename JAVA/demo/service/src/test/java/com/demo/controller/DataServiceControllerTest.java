@@ -1,4 +1,4 @@
-package com.demo.Controller;
+package com.demo.controller;
 
 import com.demo.BaseApplicationTest;
 import org.junit.Assert;

@@ -2,6 +2,10 @@ package com.demo.entity;
 
 import java.util.Date;
 
+/**
+ * @author freedom
+ * @date 2021/07/07
+ */
 public class Doctor {
     private Integer id;
 
