@@ -1,7 +1,6 @@
 package com.demo.controller;
 
 import com.demo.dto.DoctorDTO;
-import com.demo.repository.DoctorMapper;
 import com.demo.service.DoctorService;
 import com.demo.utils.JSONResult;
 import io.swagger.annotations.Api;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @MapperScan("com.demo.repository")
 @RequestMapping("api/doctor")
 @Api(value="博士操作控制器")
-public class DoctorController {
+public class DoctorController extends BaseController{
 
 	@Autowired
 	private DoctorService doctorService;
