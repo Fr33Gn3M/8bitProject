@@ -35,6 +35,11 @@ DotNetCore/TestOne/DataBase/bin
 DotNetCore/TestOne/DataBase/obj
 DotNetCore/TestOne/TestOne/bin
 DotNetCore/TestOne/TestOne/obj
+
+/bin
+/obj
+/.vs
+
 ##############################
 ## Files                    ##
 ##############################
