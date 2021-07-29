@@ -35,10 +35,10 @@ DotNetCore/TestOne/DataBase/bin
 DotNetCore/TestOne/DataBase/obj
 DotNetCore/TestOne/TestOne/bin
 DotNetCore/TestOne/TestOne/obj
-
-/bin
-/obj
-/.vs
+DotNetCore/TestOne/ExceptionManager/bin
+DotNetCore/TestOne/ExceptionManager/obj
+DotNetCore/TestOne/FilterManager/bin
+DotNetCore/TestOne/FilterManager/obj
 
 ##############################
 ## Files                    ##
