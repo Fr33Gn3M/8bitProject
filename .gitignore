@@ -2,47 +2,18 @@
 ## Folders                  ##
 ##############################
 
-ASP.NET/MvcService/.vs
-ASP.NET/MvcService/FD.MvcService/bin
-ASP.NET/MvcService/FD.MvcService/obj
-
 ASP.NET/TH
 ASP.NET/packages
 
-ASP.NET/PublicProject/FD.Commons/bin
-ASP.NET/PublicProject/FD.Commons/obj
-ASP.NET/PublicProject/FD.DataBase/bin
-ASP.NET/PublicProject/FD.DataBase/obj
-ASP.NET/PublicProject/FD.DataModels/bin
-ASP.NET/PublicProject/FD.DataModels/obj
-ASP.NET/PublicProject/FD.ExceptionManager/bin
-ASP.NET/PublicProject/FD.ExceptionManager/obj
-ASP.NET/PublicProject/FD.HistoryDataManager/bin
-ASP.NET/PublicProject/FD.HistoryDataManager/obj
-
-ASP.NET/ConsoleApp/.vs
-ASP.NET/ConsoleApp/ConsoleApp/bin
-ASP.NET/ConsoleApp/ConsoleApp/obj
-ASP.NET/ConsoleApp/Lesson1/bin
-ASP.NET/ConsoleApp/Lesson1/obj
-
-DotNetCore/TestOne/.vs
-DotNetCore/TestOne/CommonLog/bin
-DotNetCore/TestOne/CommonLog/obj
-DotNetCore/TestOne/Commons/bin
-DotNetCore/TestOne/Commons/obj
-DotNetCore/TestOne/DataBase/bin
-DotNetCore/TestOne/DataBase/obj
-DotNetCore/TestOne/TestOne/bin
-DotNetCore/TestOne/TestOne/obj
-DotNetCore/TestOne/ExceptionManager/bin
-DotNetCore/TestOne/ExceptionManager/obj
-DotNetCore/TestOne/FilterManager/bin
-DotNetCore/TestOne/FilterManager/obj
+**/bin
+**/obj
+**/.vs
 
 ##############################
 ## Files                    ##
 ##############################
+
+
 
 
 
