@@ -16,6 +16,11 @@ namespace FC.BaseApi.Controllers
             fileService = _fileService;
         }
 
+        [HttpGet("test")]
+        public ApiResult Test()
+        {
+            return ApiResult.Ok();
+        }
 
         [HttpPost("lawnExcelToWord")]
         public ApiResult LawnExcelToWord(IFormFile file)
