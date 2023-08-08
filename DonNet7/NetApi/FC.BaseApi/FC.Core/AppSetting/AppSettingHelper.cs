@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace FC.Utils.AppSetting
+namespace FC.Core.AppSetting
 {
     public class AppSettingHelper
     {

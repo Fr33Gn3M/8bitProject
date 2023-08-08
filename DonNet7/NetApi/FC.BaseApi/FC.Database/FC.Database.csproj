@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FC.Core\FC.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BaseHelper\" />
+  </ItemGroup>
+
 </Project>

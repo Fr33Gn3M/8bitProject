@@ -1,6 +1,6 @@
-﻿using FC.Core.Models;
+﻿using FC.Core.AppSetting;
+using FC.Core.Models;
 using FC.FileBusiness.Services;
-using FC.Utils.AppSetting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FC.BaseApi.Controllers

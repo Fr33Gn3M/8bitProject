@@ -1,6 +1,6 @@
-﻿using FC.Core.Models;
+﻿using FC.Core.AppSetting;
+using FC.Core.Models;
 using FC.FileBusiness.Services;
-using FC.Utils.AppSetting;
 using FC.Utils.FileUtils;
 using MathNet.Numerics.LinearAlgebra.Solvers;
 using NPOI.HPSF;

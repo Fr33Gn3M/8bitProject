@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FC.BaseApi", "FC.BaseApi\FC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FC.Core", "FC.Core\FC.Core.csproj", "{5C559F28-5A5D-4DBD-AC60-4E46FEAE9EEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FC.FileBusiness", "FC.FileBusiness\FC.FileBusiness.csproj", "{00D1B705-4F54-4C8D-AC4E-917DC4410733}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FC.FileBusiness", "FC.FileBusiness\FC.FileBusiness.csproj", "{00D1B705-4F54-4C8D-AC4E-917DC4410733}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FC.Utils", "FC.Configuration\FC.Utils.csproj", "{C2A72223-0C5C-4FF2-B197-52D477B50469}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FC.Utils", "FC.Configuration\FC.Utils.csproj", "{C2A72223-0C5C-4FF2-B197-52D477B50469}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FC.Database", "FC.Database\FC.Database.csproj", "{F9E3CDBA-5587-4D74-AD96-816A1F4332DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C2A72223-0C5C-4FF2-B197-52D477B50469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2A72223-0C5C-4FF2-B197-52D477B50469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2A72223-0C5C-4FF2-B197-52D477B50469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E3CDBA-5587-4D74-AD96-816A1F4332DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E3CDBA-5587-4D74-AD96-816A1F4332DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E3CDBA-5587-4D74-AD96-816A1F4332DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E3CDBA-5587-4D74-AD96-816A1F4332DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

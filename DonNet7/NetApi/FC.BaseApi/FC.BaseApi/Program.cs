@@ -1,6 +1,7 @@
+using FC.Core.AppSetting;
+using FC.Database.DataService;
 using FC.FileBusiness.Impl;
 using FC.FileBusiness.Services;
-using FC.Utils.AppSetting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(new AppSettingHelper());
 //×¢²áServiceµ¥Àý
 builder.Services.AddSingleton<IFileService, FileService>();
+builder.Services.AddSingleton<IDataService, DataService>();
 
 var app = builder.Build();
 

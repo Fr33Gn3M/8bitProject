@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FC.Configuration\FC.Utils.csproj" />
     <ProjectReference Include="..\FC.Core\FC.Core.csproj" />
+    <ProjectReference Include="..\FC.Database\FC.Database.csproj" />
     <ProjectReference Include="..\FC.FileBusiness\FC.FileBusiness.csproj" />
   </ItemGroup>
 

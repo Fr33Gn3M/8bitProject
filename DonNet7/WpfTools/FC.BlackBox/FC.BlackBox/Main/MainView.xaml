@@ -1,0 +1,18 @@
+﻿<hc:GlowWindow x:Class="FC.BlackBox.Main.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:s="https://github.com/canton7/Stylet"
+        xmlns:local="clr-namespace:FC.BlackBox.Main"
+        d:DataContext="{d:DesignInstance local:MainViewModel}"
+        mc:Ignorable="d"
+        Title="MainView" Height="450" Width="800">
+    <StackPanel Orientation="Horizontal">
+        <TextBlock HorizontalAlignment="Left" Margin="5" Text="{Binding Name}" Style="{StaticResource TextBlockLargeBold}"/>
+        <Button Style="{StaticResource ButtonPrimary}" Content="导入" Command="{s:Action SayHello}" />
+        <Button Style="{StaticResource ButtonPrimary}" Content="导出" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15"/>
+        <Button Style="{StaticResource ButtonPrimary}" Content="取消" Margin="10,0,0,0"/>
+    </StackPanel>
+</hc:GlowWindow>
