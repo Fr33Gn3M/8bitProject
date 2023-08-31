@@ -1,0 +1,24 @@
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FC.Database.DataService
+{
+    public interface IDataService
+    {
+        Dictionary<string, object> Get(string resource, int id);
+
+        List<Dictionary<string, object>> Query(string resource, object filter);
+
+        string Create(string resource, JObject obj);
+
+        string Update(string resource, JObject obj);
+
+        bool Delete(string resource, string id);
+
+        bool Drop(string resource, string id);
+    }
+}
