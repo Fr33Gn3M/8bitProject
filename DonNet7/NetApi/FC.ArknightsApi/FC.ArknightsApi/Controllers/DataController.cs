@@ -1,5 +1,6 @@
 ﻿using FC.Core.Models;
 using FC.Database.DataService;
+using FC.Database.FilterModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -15,6 +16,12 @@ namespace FC.ArknightsApi.Controllers
         public DataController(IDataService _dataService)
         {
             dataService = _dataService;
+        }
+
+        public ApiResult Reload()
+        {
+            dataService.Reload();
+            return ApiResult.Ok();
         }
 
         /// <summary>
@@ -38,7 +45,7 @@ namespace FC.ArknightsApi.Controllers
         /// <returns></returns>
         //TODO object filter修改为条件对象
         [HttpPost("query/{resource}")]
-        public ApiResult Query(string resource, object filter)
+        public ApiResult Query(string resource, PageQueryFilter filter)
         {
             var result = dataService.Query(resource, filter);
             return ApiResult.Ok(result);

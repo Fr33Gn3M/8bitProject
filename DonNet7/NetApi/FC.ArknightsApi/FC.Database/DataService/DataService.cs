@@ -1,4 +1,5 @@
 ﻿using FC.Core.AppSetting;
+using FC.Database.FilterModel;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -21,14 +22,19 @@ namespace FC.Database.DataService
         {
         }
 
-        public Dictionary<string, object> Get(string resource, int id)
+        public void Reload()
         {
-            return Db.dataHelper.Get(resource, id);
+            Db.DataHelper.Reload();
         }
 
-        public List<Dictionary<string, object>> Query(string resource, object filter)
+        public Dictionary<string, object> Get(string resource, int id)
         {
-            throw new NotImplementedException();
+            return Db.DataHelper.Get(resource, id);
+        }
+
+        public List<Dictionary<string, object>> Query(string resource, PageQueryFilter filter)
+        {
+            return Db.DataHelper.Query(resource, filter);
         }
 
         public string Create(string resource, JObject obj)
