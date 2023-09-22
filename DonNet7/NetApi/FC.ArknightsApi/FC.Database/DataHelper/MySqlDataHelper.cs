@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Reflection.PortableExecutable;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -164,29 +165,33 @@ namespace FC.Database.DataHelper
         /// <param name="resource">资源名称</param>
         /// <param name="filter">过滤器</param>
         /// <returns>结果集 字典列表</returns>
-        public List<Dictionary<string, object>> Query(string resource, PageQueryFilter filter)
+        public PageQueryResult Query(string resource, PageQueryFilter filter)
         {
-            var list = new List<Dictionary<string, object>>();
-            string where = GetWhereString(filter);
-            List<MySqlParameter> sqlParameterList = GetWhereParameterList(filter);
+            var whereTuple = GetWhereString(resource, filter);
             string order = GetOrderString(filter);
             string field = GetFieldString(filter);
             string page = GetPageString(filter);
-
-            string sql = string.Format("select {0} from `{1}` {2} {3} {4}", field, resource, where, order, page);
+            //TODO 分页查询获取总条数的优化方法，但是后面的数量怎么获取需要等实际测试看看
+            string sql = string.Format("select SQL_CALC_FOUND_ROWS {0} from `{1}` {2} {3} {4};" +
+                "SELECT FOUND_ROWS() as total;", field, resource, whereTuple.Item1, order, page);
 
             Connection.Open();
 
             using var cmd = Connection.CreateCommand();
             cmd.CommandText = sql;
-            foreach (var item in sqlParameterList)
+            if(whereTuple.Item2 != null && whereTuple.Item2.Count > 0)
             {
-                cmd.Parameters.Add(item);
+                foreach (var item in whereTuple.Item2)
+                {
+                    cmd.Parameters.Add(item);
+                }
+
             }
-            var result = ReadAll(cmd.ExecuteReader());
-            
+            var list = ReadAll(cmd.ExecuteReader());
+            //TODO 总条数
+            int total = 0;
             Connection.Close();
-            return result;
+            return new PageQueryResult(list, total);
         }
         #endregion
 
@@ -196,11 +201,12 @@ namespace FC.Database.DataHelper
         /// </summary>
         /// <param name="filter">分页查询过滤器</param>
         /// <returns>where语句</returns>
-        private string GetWhereString(PageQueryFilter filter)
+        private Tuple<string, List<MySqlParameter>> GetWhereString(string resource, PageQueryFilter filter)
         {
             //DONE 拼接where语句
             string where = string.Empty;
-            if (filter == null || filter.Filter == null || filter.Filter.Filters.Length <= 0) return where;
+            List<MySqlParameter> list = new();
+            if (filter == null || filter.Filter == null || filter.Filter.Filters.Length <= 0) return Tuple.Create(where, list);
 
             StringBuilder builder = new StringBuilder();
             var baseFilter = filter.Filter;
@@ -209,11 +215,15 @@ namespace FC.Database.DataHelper
                 string str = string.Empty;
                 if (item is QueryFilter)
                 {
-                    str = GetWhereString(item as QueryFilter);
+                    var tuple = GetWhereString(resource, item as QueryFilter);
+                    str = tuple.Item1;
+                    list = list.Concat(tuple.Item2).ToList();
                 }
                 if(item is MiniQueryFilter)
                 {
-                    str = GetWhereString(item as MiniQueryFilter);
+                    var tuple = GetWhereString(resource, item as MiniQueryFilter);
+                    str = tuple.Item1;
+                    list = list.Concat(tuple.Item2).ToList();
                 }
 
                 if (item != baseFilter.Filters.First() && !string.IsNullOrEmpty(str))
@@ -224,7 +234,7 @@ namespace FC.Database.DataHelper
                 builder.Append(str);
             }
             where = string.Format("where {0}", builder.ToString());
-            return where;
+            return Tuple.Create(where, list);
         }
 
         /// <summary>
@@ -232,11 +242,12 @@ namespace FC.Database.DataHelper
         /// </summary>
         /// <param name="filter">标准查询过滤器</param>
         /// <returns>where语句</returns>
-        private string GetWhereString(QueryFilter filter)
+        private Tuple<string, List<MySqlParameter>> GetWhereString(string resource, QueryFilter filter)
         {
             string where = string.Empty;
-            StringBuilder builder = new StringBuilder();
-            if (filter.Filters.Length <= 0) return where;
+            List<MySqlParameter> list = new();
+            StringBuilder builder = new();
+            if (filter.Filters.Length <= 0) return Tuple.Create(where, list);
             //嵌套的where语句要有小括号
             builder.Append('(');
             foreach (var item in filter.Filters)
@@ -249,17 +260,21 @@ namespace FC.Database.DataHelper
                 string str = string.Empty;
                 if (item is QueryFilter)
                 {
-                    str = GetWhereString(item as QueryFilter);
+                    var tuple = GetWhereString(resource, item as QueryFilter);
+                    str = tuple.Item1;
+                    list = list.Concat(tuple.Item2).ToList();
                 }
                 if (item is MiniQueryFilter)
                 {
-                    str = GetWhereString(item as MiniQueryFilter);
+                    var tuple = GetWhereString(resource, item as MiniQueryFilter);
+                    str = tuple.Item1;
+                    list = list.Concat(tuple.Item2).ToList();
                 }
                 builder.Append(str);
             }
             builder.Append(')');
             where = builder.ToString();
-            return where;
+            return Tuple.Create(where, list);
         }
 
         /// <summary>
@@ -267,25 +282,117 @@ namespace FC.Database.DataHelper
         /// </summary>
         /// <param name="filter">最小查询过滤器</param>
         /// <returns>where语句</returns>
-        private string GetWhereString(MiniQueryFilter filter)
+        private Tuple<string, List<MySqlParameter>> GetWhereString(string resource, MiniQueryFilter filter)
         {
             //TODO 拼接最小化where语句
             string where = string.Empty;
-            StringBuilder builder = new StringBuilder();
-            where = builder.ToString();
-            return where;
+            List<MySqlParameter> list = new();
+            //用于区分同名字段
+            int sign = Environment.TickCount;
+            var fieldCode = "@" + filter.FieldName + sign;
+            bool isValue = false;
+            object value = null;
+            switch (filter.Sign)
+            {
+                case SqlOperator.IsNuLL:
+                    where = string.Format("`{0}` is null", filter.FieldName);
+                    break;
+                case SqlOperator.IsNotNuLL:
+                    where = string.Format("`{0}` is not null", filter.FieldName);
+                    break;
+                case SqlOperator.Equal:
+                    where = string.Format("`{0}` = {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = filter.Value;
+                    break;
+                case SqlOperator.NoEqual:
+                    where = string.Format("`{0}` <> {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = filter.Value;
+                    break;
+                case SqlOperator.Like:
+                    where = string.Format("`{0}` like {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = "'%"+filter.Value.ToString()+ "%'";
+                    break;
+                case SqlOperator.LeftLike:
+                    where = string.Format("`{0}` like {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = "'" + filter.Value.ToString() + "%'";
+                    break;
+                case SqlOperator.RightLike:
+                    where = string.Format("`{0}` like {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = "'%" + filter.Value.ToString() + "'";
+                    break;
+                case SqlOperator.NotLike:
+                    where = string.Format("`{0}` not like {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = "'%" + filter.Value.ToString() + "%'";
+                    break;
+                case SqlOperator.LessThan:
+                    where = string.Format("`{0}` < {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = filter.Value;
+                    break;
+                case SqlOperator.LessEqualThan:
+                    where = string.Format("`{0}` <= {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = filter.Value;
+                    break;
+                case SqlOperator.MoreThan:
+                    where = string.Format("`{0}` > {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = filter.Value;
+                    break;
+                case SqlOperator.MoreEqualThan:
+                    where = string.Format("`{0}` >= {1}", filter.FieldName, fieldCode);
+                    isValue = true;
+                    value = filter.Value;
+                    break;
+                case SqlOperator.In:
+                    {
+                        where = string.Format("`{0}` in ({1})", filter.FieldName, fieldCode);
+                        isValue = true;
+                        var arr = filter.Value.ToString().Split(',');
+                        string inStr = string.Empty;
+                        foreach (string item in arr)
+                        {
+                            inStr += "'" + item + "',";
+                        }
+                        value = inStr[..^1];
+                        break;
+                    }
+                case SqlOperator.NotIn:
+                    {
+                        where = string.Format("`{0}` not in ({1})", filter.FieldName, fieldCode);
+                        isValue = true;
+                        var arr = filter.Value.ToString().Split(',');
+                        string inStr = string.Empty;
+                        foreach (string item in arr)
+                        {
+                            inStr += "'" + item + "',";
+                        }
+                        value = inStr[..^1];
+                        break;
+                    }
+                default: break;
+            }
+
+            if (isValue)
+            {
+                var field = (from fieldInfo in FieldInfos[resource] where fieldInfo.Name.Equals(filter.FieldName) select fieldInfo).First();
+                list.Add(new MySqlParameter
+                {
+                    ParameterName = fieldCode,
+                    DbType = field.DbType,
+                    Value = value
+                });
+            }
+
+            return Tuple.Create(where, list);
         }
 
-        /// <summary>
-        /// 获取where语句 参数映射 对象列表
-        /// </summary>
-        /// <param name="filter">分页查询过滤器</param>
-        /// <returns>MySqlParameter列表</returns>
-        private List<MySqlParameter> GetWhereParameterList(PageQueryFilter filter)
-        {
-            //TODO 构造where语句参数 映射对象列表
-            return null;
-        }
 
         private string GetOrderString(PageQueryFilter filter)
         {

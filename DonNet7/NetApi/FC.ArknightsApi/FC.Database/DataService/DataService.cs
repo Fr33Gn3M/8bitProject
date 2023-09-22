@@ -1,5 +1,6 @@
 ﻿using FC.Core.AppSetting;
 using FC.Database.FilterModel;
+using FC.Database.Model;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace FC.Database.DataService
             return Db.DataHelper.Get(resource, id);
         }
 
-        public List<Dictionary<string, object>> Query(string resource, PageQueryFilter filter)
+        public PageQueryResult Query(string resource, PageQueryFilter filter)
         {
             return Db.DataHelper.Query(resource, filter);
         }

@@ -1,4 +1,5 @@
 ﻿using FC.Database.FilterModel;
+using FC.Database.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace FC.Database.BaseHelper
 
         Dictionary<string, object> Get(string resource, int id);
 
-        List<Dictionary<string, object>> Query(string resource, PageQueryFilter filter);
+        PageQueryResult Query(string resource, PageQueryFilter filter);
     }
 }

@@ -18,6 +18,11 @@ namespace FC.ArknightsApi.Controllers
             dataService = _dataService;
         }
 
+        /// <summary>
+        /// 重新装载数据库静态参数
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("reload")]
         public ApiResult Reload()
         {
             dataService.Reload();
@@ -48,7 +53,7 @@ namespace FC.ArknightsApi.Controllers
         public ApiResult Query(string resource, PageQueryFilter filter)
         {
             var result = dataService.Query(resource, filter);
-            return ApiResult.Ok(result);
+            return ApiResult.Ok(result.DataList, result.Total);
         }
 
         /// <summary>

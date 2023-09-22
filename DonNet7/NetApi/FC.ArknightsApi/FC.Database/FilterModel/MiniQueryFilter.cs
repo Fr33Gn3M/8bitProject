@@ -20,9 +20,9 @@ namespace FC.Database.FilterModel
         public string FieldName { get; set; }
 
         /// <summary>
-        /// value值，如果是in和notIn，传入字段数组
+        /// value值，如果是in和notIn，用,隔开
         /// </summary>
-        public object Value { get; set; }//如果是in和notIn用;隔开
+        public object Value { get; set; }//如果是in和notIn用,隔开
 
         /// <summary>
         /// sql简单操作符，大于等于小于 等等

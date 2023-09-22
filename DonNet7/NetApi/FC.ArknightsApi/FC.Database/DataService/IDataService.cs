@@ -1,4 +1,5 @@
 ﻿using FC.Database.FilterModel;
+using FC.Database.Model;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace FC.Database.DataService
 
         Dictionary<string, object> Get(string resource, int id);
 
-        List<Dictionary<string, object>> Query(string resource, PageQueryFilter filter);
+        PageQueryResult Query(string resource, PageQueryFilter filter);
 
         string Create(string resource, JObject obj);
 
