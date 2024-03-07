@@ -48,7 +48,6 @@ namespace FC.ArknightsApi.Controllers
         /// <param name="resource"></param>
         /// <param name="filter"></param>
         /// <returns></returns>
-        //TODO object filter修改为条件对象
         [HttpPost("query/{resource}")]
         public ApiResult Query(string resource, PageQueryFilter filter)
         {

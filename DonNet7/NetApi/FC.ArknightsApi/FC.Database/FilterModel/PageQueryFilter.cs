@@ -1,13 +1,4 @@
-﻿using FC.Database.Enum;
-using FC.Database.Model;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FC.Database.FilterModel
+﻿namespace FC.Database.FilterModel
 {
     /// <summary>
     /// 页面查询过滤器

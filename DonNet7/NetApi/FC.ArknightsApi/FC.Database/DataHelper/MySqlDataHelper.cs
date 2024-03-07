@@ -1,18 +1,10 @@
-﻿using FC.Database.BaseHelper;
-using FC.Database.Enum;
+﻿using FC.Database.Enum;
 using FC.Database.FilterModel;
 using FC.Database.Model;
 using MySqlConnector;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using FC.Database.BaseHelper;
 
 namespace FC.Database.DataHelper
 {
@@ -61,16 +53,17 @@ namespace FC.Database.DataHelper
         /// </summary>
         private void LoadTableInfos()
         {
-            Connection.Open();
-            using var cmd = Connection.CreateCommand();
-            cmd.CommandText = $"select `table_name`,`table_comment` from information_schema.tables where `table_schema`=@schema";
-            cmd.Parameters.Add(new MySqlParameter
+            string sql = $"select `table_name`,`table_comment` from information_schema.tables where `table_schema`=@schema";
+            List<MySqlParameter> mySqlParameters = new List<MySqlParameter>
             {
-                ParameterName = "@schema",
-                DbType = DbType.String,
-                Value = Schema,
-            });
-            var result = ReadAll(cmd.ExecuteReader());
+                new MySqlParameter
+                {
+                    ParameterName = "@schema",
+                    DbType = DbType.String,
+                    Value = Schema,
+                }
+            };
+            var result = DBHelper.Instance.Execute(Connection, sql, mySqlParameters);
             //包装成{"tableName","tableNameCN"}的结构
             var dic = new SortedDictionary<string, string>();
             foreach(var item in result)
@@ -78,7 +71,6 @@ namespace FC.Database.DataHelper
                 dic.Add(item["table_name"].ToString(), item["table_comment"].ToString());
             }
             TableInfos = dic;
-            Connection.Close();
         }
 
         /// <summary>
@@ -86,17 +78,17 @@ namespace FC.Database.DataHelper
         /// </summary>
         private void LoadFieldInfos()
         {
-            string schema = ConnectionString.Substring(ConnectionString.LastIndexOf("="));
-            Connection.Open();
-            using var cmd = Connection.CreateCommand();
-            cmd.CommandText = $"select `table_name`, `column_name`, `is_nullable`, `data_type`, `character_maximum_length`, `column_key`, `column_comment` from information_schema.columns where `table_schema`=@schema";
-            cmd.Parameters.Add(new MySqlParameter
+            string sql = $"select `table_name`, `column_name`, `is_nullable`, `data_type`, `character_maximum_length`, `column_key`, `column_comment` from information_schema.columns where `table_schema`=@schema";
+            List<MySqlParameter> mySqlParameters = new List<MySqlParameter>
             {
-                ParameterName = "@schema",
-                DbType = DbType.String,
-                Value = Schema,
-            });
-            var result = ReadAll(cmd.ExecuteReader());
+                new MySqlParameter
+                {
+                    ParameterName = "@schema",
+                    DbType = DbType.String,
+                    Value = Schema,
+                }
+            };
+            var result = DBHelper.Instance.Execute(Connection, sql, mySqlParameters);
             //包装
             var dic = new Dictionary<string, List<DbFieldInfo>>();
             foreach (var item in result)
@@ -112,7 +104,6 @@ namespace FC.Database.DataHelper
                 dic[tableName].Add(dbFieldInfo);
             }
             FieldInfos = dic;
-            Connection.Close();
         }
 
         /// <summary>
@@ -145,17 +136,17 @@ namespace FC.Database.DataHelper
         /// <returns>结果字典</returns>
         public Dictionary<string, object> Get(string resource, int id)
         {
-            Connection.Open();
-            using var cmd = Connection.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM `{resource}` WHERE `id` = @id";
-            cmd.Parameters.Add(new MySqlParameter
+            string sql = $"SELECT * FROM `{resource}` WHERE `id` = @id";
+            List<MySqlParameter> mySqlParameters = new List<MySqlParameter>
             {
-                ParameterName = "@id",
-                DbType = DbType.Int32,
-                Value = id,
-            });
-            var result = ReadAll(cmd.ExecuteReader());
-            Connection.Close();
+                new MySqlParameter
+                {
+                    ParameterName = "@id",
+                    DbType = DbType.Int32,
+                    Value = id,
+                }
+            };
+            var result = DBHelper.Instance.Execute(Connection,sql,mySqlParameters);
             return result.Count > 0 ? result.First() : null;
         }
 
@@ -167,31 +158,19 @@ namespace FC.Database.DataHelper
         /// <returns>结果集 字典列表</returns>
         public PageQueryResult Query(string resource, PageQueryFilter filter)
         {
+            string field = GetFieldString(filter);
             var whereTuple = GetWhereString(resource, filter);
             string order = GetOrderString(filter);
-            string field = GetFieldString(filter);
             string page = GetPageString(filter);
             //TODO 分页查询获取总条数的优化方法，但是后面的数量怎么获取需要等实际测试看看
             string sql = string.Format("select SQL_CALC_FOUND_ROWS {0} from `{1}` {2} {3} {4};" +
                 "SELECT FOUND_ROWS() as total;", field, resource, whereTuple.Item1, order, page);
+            var result = DBHelper.Instance.Execute(Connection, sql, whereTuple.Item2);
 
-            Connection.Open();
-
-            using var cmd = Connection.CreateCommand();
-            cmd.CommandText = sql;
-            if(whereTuple.Item2 != null && whereTuple.Item2.Count > 0)
-            {
-                foreach (var item in whereTuple.Item2)
-                {
-                    cmd.Parameters.Add(item);
-                }
-
-            }
-            var list = ReadAll(cmd.ExecuteReader());
             //TODO 总条数
             int total = 0;
             Connection.Close();
-            return new PageQueryResult(list, total);
+            return new PageQueryResult(result, total);
         }
         #endregion
 
@@ -233,7 +212,10 @@ namespace FC.Database.DataHelper
 
                 builder.Append(str);
             }
-            where = string.Format("where {0}", builder.ToString());
+            if (builder.Length > 0)
+            {
+                where = string.Format("where {0}", builder.ToString());
+            }
             return Tuple.Create(where, list);
         }
 
@@ -448,39 +430,7 @@ namespace FC.Database.DataHelper
             return pageLimit;
         }
 
-        /// <summary>
-        /// 数据库语句执行
-        /// </summary>
-        /// <param name="reader">DbDataReader对象</param>
-        /// <returns>执行结果 字典列表</returns>
-        private List<Dictionary<string, object>> ReadAll(DbDataReader reader)
-        {
-            var list = new List<Dictionary<string, object>>();
-            using (reader)
-            {
-                while (reader.Read())
-                {
-                    var dic = DataReaderToDic(reader);
-                    list.Add(dic);
-                }
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// DataReader转Dictionary字典
-        /// </summary>
-        /// <param name="dataReader">DataReader对象</param>
-        /// <returns>Dictionary字典</returns>
-        private Dictionary<string, object> DataReaderToDic(IDataReader dataReader)
-        {
-            var dic = new Dictionary<string, object>();
-            for (int i = 0; i < dataReader.FieldCount; i++)
-            {
-                dic.Add(dataReader.GetName(i), dataReader.GetValue(i));
-            }
-            return dic;
-        }
+        
         #endregion
 
         #region 属性

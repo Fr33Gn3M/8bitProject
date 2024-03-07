@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FC.Database.Model
+namespace FC.Database.FilterModel.Model
 {
     public class OrderInfo
     {
