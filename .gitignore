@@ -1,0 +1,40 @@
+# =============== 全局 ===============
+.DS_Store
+Thumbs.db
+#.vscode/                  # 除非你想共享设置，否则忽略
+*.log
+.env
+*.tmp
+
+
+# =============== ASP.NET ===============
+/ASP.NET/**/*.dll
+/ASP.NET/**/*.exe
+/ASP.NET/**/bin/
+/ASP.NET/**/obj/
+/ASP.NET/**/*.user
+/ASP.NET/**/*.suo
+**/packages
+**/bin
+**/obj
+**/.vs
+
+# =============== JAVA ===============
+*.class
+*.jar
+/target/
+
+# =============== Python ===============
+__pycache__/
+*.pyc
+venv/
+
+# =============== FreedomForge (你的全栈项目) ===============
+/FreedomForge/frontend/node_modules/
+/FreedomForge/frontend/dist/
+/FreedomForge/backend/__pycache__/
+/FreedomForge/backend/venv/
+/FreedomForge/backend/.env
+/FreedomForge/backend/database.db
+
+
