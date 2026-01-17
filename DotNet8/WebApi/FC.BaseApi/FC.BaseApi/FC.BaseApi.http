@@ -1,0 +1,6 @@
+@FC.BaseApi_HostAddress = http://localhost:5180
+
+GET {{FC.BaseApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

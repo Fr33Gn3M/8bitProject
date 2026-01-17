@@ -3,7 +3,7 @@
 ##############################
 
 ASP.NET/TH
-ASP.NET/packages
+**/packages
 
 **/bin
 **/obj
